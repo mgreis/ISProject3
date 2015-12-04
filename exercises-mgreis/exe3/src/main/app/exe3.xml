@@ -10,9 +10,11 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
     <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8082" doc:name="HTTP Listener Configuration">
         <http:worker-threading-profile poolExhaustedAction="WAIT"/>
     </http:listener-config>
-    <db:mysql-config name="MySQL_Configuration" doc:name="MySQL Configuration"/>
+    <db:mysql-config name="MySQL_Configuration" doc:name="MySQL Configuration" database="jpaproject2" host="localhost" port="3306" user="root"/>
     <flow name="exe3Flow">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/exe3" doc:name="HTTP"/>
-        <db:no-operation-selected config-ref="MySQL_Configuration" doc:name="Database"/>
+        <db:select config-ref="MySQL_Configuration" doc:name="Database">
+            <db:parameterized-query><![CDATA[selec * from user;]]></db:parameterized-query>
+        </db:select>
     </flow>
 </mule>
