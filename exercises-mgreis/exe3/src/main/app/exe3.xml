@@ -14,7 +14,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
     <flow name="exe3Flow">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/exe3" doc:name="HTTP"/>
         <db:select config-ref="MySQL_Configuration" doc:name="Database">
-            <db:parameterized-query><![CDATA[selec * from user;]]></db:parameterized-query>
+            <db:parameterized-query><![CDATA[select * from user;]]></db:parameterized-query>
         </db:select>
     </flow>
 </mule>
