@@ -1,0 +1,49 @@
+2015-11-27 17:54:54,692 [main] INFO  org.mule.module.launcher.application.DefaultMuleApplication - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Initializing app 'exe2'                                  +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2015-11-27 17:54:54,981 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising RegistryBroker
+2015-11-27 17:54:55,071 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Starting discovery of extensions
+2015-11-27 17:54:55,161 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Discovered 1 extensions
+2015-11-27 17:54:55,161 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Registering extension validation (version 3.7)
+2015-11-27 17:54:55,203 [main] INFO  org.mule.config.spring.MuleArtifactContext - Refreshing org.mule.config.spring.MuleArtifactContext@158a3b2e: startup date [Fri Nov 27 17:54:55 GMT 2015]; root of context hierarchy
+2015-11-27 17:54:56,373 [main] INFO  org.mule.config.spring.processors.NoDevkitInjectorProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2015-11-27 17:54:57,172 [main] WARN  org.mule.module.ognl.expression.OgnlExpressionEvaluator - OGNL module is deprecated and will be removed in Mule 4.0. Use MEL expressions instead.
+2015-11-27 17:54:57,501 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising model: _muleSystemModel
+2015-11-27 17:54:57,505 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: exe2Flow
+2015-11-27 17:54:57,505 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@a2341c6
+2015-11-27 17:54:57,542 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: exe2Flow.stage1
+2015-11-27 17:54:57,721 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class exe2.TrocaString
+2015-11-27 17:54:58,230 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.2113891589
+2015-11-27 17:54:58,262 [main] INFO  org.mule.util.journal.TransactionJournal - Using files for tx logs C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\.\.mule\exe2\queue-tx-log\tx1.log and C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\.\.mule\exe2\queue-tx-log\tx2.log
+2015-11-27 17:54:58,268 [main] INFO  org.mule.util.journal.TransactionJournal - Using files for tx logs C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\.\.mule\exe2\queue-xa-tx-log\tx1.log and C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\.\.mule\exe2\queue-xa-tx-log\tx2.log
+2015-11-27 17:54:58,548 [main] INFO  org.mule.config.spring.SpringXmlConfigurationBuilder - Configured Mule using "org.mule.config.spring.SpringXmlConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\apps\exe2\exe2.xml'}]"
+2015-11-27 17:54:58,548 [main] INFO  org.mule.config.builders.AutoConfigurationBuilder - Configured Mule using "org.mule.config.builders.AutoConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\apps\exe2\exe2.xml'}]"
+2015-11-27 17:54:58,549 [main] INFO  org.mule.module.launcher.application.DefaultMuleApplication - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Starting app 'exe2'                                      +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2015-11-27 17:54:58,553 [main] INFO  org.mule.util.queue.QueueXaResourceManager - Starting ResourceManager
+2015-11-27 17:54:58,553 [main] INFO  org.mule.util.queue.QueueXaResourceManager - Started ResourceManager
+2015-11-27 17:54:58,676 [main] INFO  org.mule.module.http.internal.listener.DefaultHttpListenerConfig - Listening for requests on http://0.0.0.0:8082
+2015-11-27 17:54:58,680 [main] INFO  org.mule.modules.oauth2.provider.agents.DefaultSplashScreenAgent - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ DevKit Extensions (0) used in this application 
+                             +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2015-11-27 17:54:58,683 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Starting model: _muleSystemModel
+2015-11-27 17:54:58,684 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: exe2Flow
+2015-11-27 17:54:58,685 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: exe2Flow.stage1
+2015-11-27 17:54:58,690 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.2113891589
+2015-11-27 17:54:58,731 [main] INFO  org.mule.module.management.agent.WrapperManagerAgent - This JVM hasn't been launched by the wrapper, the agent will not run.
+2015-11-27 17:55:03,273 [main] INFO  org.mule.DefaultMuleContext - 
+**********************************************************************
+* Application: exe2                                                  *
+* OS encoding: \, Mule encoding: UTF-8                               *
+*                                                                    *
+* Agents Running:                                                    *
+*   JMX Agent                                                        *
+*   Batch module default engine                                      *
+*   DevKit Extension Information                                     *
+*   Wrapper Manager                                                  *
+**********************************************************************

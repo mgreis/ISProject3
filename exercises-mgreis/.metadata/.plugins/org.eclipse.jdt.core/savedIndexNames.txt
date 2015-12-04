@@ -1,0 +1,7 @@
+INDEX VERSION 1.127+C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.metadata\.plugins\org.eclipse.jdt.core
+1318785017.index
+4257325822.index
+3179685228.index
+2328269416.index
+613381334.index
+1681760852.index
