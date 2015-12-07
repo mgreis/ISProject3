@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:smtp="http://www.mulesoft.org/schema/mule/smtp" xmlns:smtps="http://www.mulesoft.org/schema/mule/smtps"
+	xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:email="http://www.mulesoft.org/schema/mule/email" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/smtps http://www.mulesoft.org/schema/mule/smtps/current/mule-smtps.xsd
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/email http://www.mulesoft.org/schema/mule/email/current/mule-email.xsd">
+	<http:listener-config name="HTTP_Listener_Configuration"
+		host="0.0.0.0" port="8082" doc:name="HTTP Listener Configuration">
+		<http:worker-threading-profile
+			poolExhaustedAction="WAIT" />
+	</http:listener-config>
+    <smtp:gmail-connector name="Gmail" contentType="text/plain" fromAddress="integracaosistemas15@gmail.com"  subject="hello" validateConnections="true" doc:name="Gmail" replyToAddresses="integracaosistemas15@gmail.com"/>
+	<flow name="exe4Flow">
+		<http:listener config-ref="HTTP_Listener_Configuration"
+			path="/exe4" doc:name="HTTP" />
+        <set-payload value="Hello World!" doc:name="Set Payload"/>
+        <smtp:outbound-endpoint host="smtp.gmail.com" responseTimeout="10000" doc:name="SMTP" connector-ref="Gmail" from="integracaosistemas15@gmail.com" password="sistemas15" port="587" replyTo="integracaosistemas15@gmail.com" subject="hello" to="integracaosistemas15@gmail.com" user="integracaosistemas15"/>
+	</flow>
+</mule>

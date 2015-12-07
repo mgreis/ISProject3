@@ -16,22 +16,12 @@ http://www.mulesoft.org/schema/mule/email http://www.mulesoft.org/schema/mule/em
 		<http:worker-threading-profile
 			poolExhaustedAction="WAIT" />
 	</http:listener-config>
+    
+    <smtp:gmail-connector name="Gmail1"  validateConnections="true" doc:name="Gmail"/>
 	<flow name="exe4Flow">
 		<http:listener config-ref="HTTP_Listener_Configuration"
-			path="/" doc:name="HTTP" />
-		<email:string-to-email-transformer
-			doc:name="String to Email" />
-        <smtp:outbound-endpoint host="localhost" responseTimeout="10000" doc:name="SMTP"/>
-	</flow>
-	<flow name="EmailNotificationService">
-		<vm:inbound-endpoint path="emailNotification"
-			exchange-pattern="one-way" doc:name="VM"/>
-		<smtps:outbound-endpoint user="${user}"
-			password="${password}" host="${host}" from="${from}"
-			subject="Your order has been placed!" doc:name="SMTP">
-			<custom-transformer
-				class="org.mule.example.bookstore.transformers.OrderToEmailTransformer" />
-			<email:string-to-email-transformer />
-		</smtps:outbound-endpoint>
+			path="/exe4" doc:name="HTTP" />
+        <set-payload value="Hello World!" doc:name="Set Payload"/>
+        <smtp:outbound-endpoint host="smtp.gmail.com" responseTimeout="10000" doc:name="SMTP" connector-ref="Gmail1" password="sistemas15" port="587"  subject="hello" to="integracaosistemas15@gmail.com" user="integracaosistemas15" />
 	</flow>
 </mule>

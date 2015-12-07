@@ -1,0 +1,659 @@
+2015-12-04 18:25:50,221 [main] INFO  org.mule.module.launcher.application.DefaultMuleApplication - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Initializing app 'exe42'                                 +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2015-12-04 18:25:50,503 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising RegistryBroker
+2015-12-04 18:25:50,591 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Starting discovery of extensions
+2015-12-04 18:25:50,669 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Discovered 1 extensions
+2015-12-04 18:25:50,669 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Registering extension validation (version 3.7)
+2015-12-04 18:25:50,711 [main] INFO  org.mule.config.spring.MuleArtifactContext - Refreshing org.mule.config.spring.MuleArtifactContext@23fb172e: startup date [Fri Dec 04 18:25:50 GMT 2015]; root of context hierarchy
+2015-12-04 18:25:51,692 [main] INFO  org.mule.config.spring.processors.NoDevkitInjectorProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2015-12-04 18:25:52,147 [main] WARN  org.springframework.beans.GenericTypeAwarePropertyDescriptor - Invalid JavaBean property 'port' being accessed! Ambiguous write methods found next to actually used [public void org.mule.endpoint.URIBuilder.setPort(java.lang.String)]: [public void org.mule.endpoint.URIBuilder.setPort(int)]
+2015-12-04 18:25:52,427 [main] WARN  org.mule.module.ognl.expression.OgnlExpressionEvaluator - OGNL module is deprecated and will be removed in Mule 4.0. Use MEL expressions instead.
+2015-12-04 18:25:52,664 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising connector: connector.smtp.mule.default
+2015-12-04 18:25:52,754 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising model: _muleSystemModel
+2015-12-04 18:25:52,758 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: exe42Flow
+2015-12-04 18:25:52,758 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@b9a77c8
+2015-12-04 18:25:52,780 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: exe42Flow.stage1
+2015-12-04 18:25:52,796 [main] INFO  org.mule.util.journal.TransactionJournal - Using files for tx logs C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\.\.mule\exe42\queue-tx-log\tx1.log and C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\.\.mule\exe42\queue-tx-log\tx2.log
+2015-12-04 18:25:52,801 [main] INFO  org.mule.util.journal.TransactionJournal - Using files for tx logs C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\.\.mule\exe42\queue-xa-tx-log\tx1.log and C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\.\.mule\exe42\queue-xa-tx-log\tx2.log
+2015-12-04 18:25:53,088 [main] INFO  org.mule.config.spring.SpringXmlConfigurationBuilder - Configured Mule using "org.mule.config.spring.SpringXmlConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\apps\exe42\exe42.xml'}]"
+2015-12-04 18:25:53,088 [main] INFO  org.mule.config.builders.AutoConfigurationBuilder - Configured Mule using "org.mule.config.builders.AutoConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\apps\exe42\exe42.xml'}]"
+2015-12-04 18:25:53,090 [main] INFO  org.mule.module.launcher.application.DefaultMuleApplication - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Starting app 'exe42'                                     +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2015-12-04 18:25:53,092 [main] INFO  org.mule.util.queue.QueueXaResourceManager - Starting ResourceManager
+2015-12-04 18:25:53,092 [main] INFO  org.mule.util.queue.QueueXaResourceManager - Started ResourceManager
+2015-12-04 18:25:53,148 [main] INFO  org.mule.module.http.internal.listener.DefaultHttpListenerConfig - Listening for requests on http://0.0.0.0:8082
+2015-12-04 18:25:53,151 [main] INFO  org.mule.transport.email.SmtpConnector - Connected: SmtpConnector
+{
+  name=connector.smtp.mule.default
+  lifecycle=initialise
+  this=7e642b88
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[smtp]
+  serviceOverrides=<none>
+}
+
+2015-12-04 18:25:53,151 [main] INFO  org.mule.transport.email.SmtpConnector - Starting: SmtpConnector
+{
+  name=connector.smtp.mule.default
+  lifecycle=initialise
+  this=7e642b88
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[smtp]
+  serviceOverrides=<none>
+}
+
+2015-12-04 18:25:53,152 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Starting connector: connector.smtp.mule.default
+2015-12-04 18:25:53,154 [main] INFO  org.mule.modules.oauth2.provider.agents.DefaultSplashScreenAgent - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ DevKit Extensions (0) used in this application 
+                             +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2015-12-04 18:25:53,156 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Starting model: _muleSystemModel
+2015-12-04 18:25:53,157 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: exe42Flow
+2015-12-04 18:25:53,158 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: exe42Flow.stage1
+2015-12-04 18:25:53,214 [main] INFO  org.mule.module.management.agent.WrapperManagerAgent - This JVM hasn't been launched by the wrapper, the agent will not run.
+2015-12-04 18:26:02,299 [main] INFO  org.mule.module.management.agent.AbstractJmxAgent - Registered Connector Service with name Mule.exe42:type=Connector,name="connector.smtp.mule.default.1"
+2015-12-04 18:26:02,317 [main] INFO  org.mule.DefaultMuleContext - 
+**********************************************************************
+* Application: exe42                                                 *
+* OS encoding: \, Mule encoding: UTF-8                               *
+*                                                                    *
+* Agents Running:                                                    *
+*   Batch module default engine                                      *
+*   DevKit Extension Information                                     *
+*   JMX Agent                                                        *
+*   Wrapper Manager                                                  *
+**********************************************************************
+2015-12-04 18:26:24,339 [[exe42].HTTP_Listener_Configuration.worker.01] INFO  org.mule.module.http.internal.listener.HttpListenerRegistry - No listener found for request: (GET)/exe4
+2015-12-04 18:26:24,339 [[exe42].HTTP_Listener_Configuration.worker.01] INFO  org.mule.module.http.internal.listener.HttpListenerRegistry - Available listeners are: [(*)/exe42/]
+2015-12-04 18:26:25,363 [[exe42].HTTP_Listener_Configuration.worker.01] INFO  org.mule.transport.service.DefaultTransportServiceDescriptor - Loading default outbound transformer: org.mule.transport.email.transformers.ObjectToMimeMessage
+2015-12-04 18:26:25,369 [[exe42].HTTP_Listener_Configuration.worker.01] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising: 'connector.smtp.mule.default.dispatcher.1852544800'. Object is: SmtpMessageDispatcher
+2015-12-04 18:26:34,551 [[exe42].HTTP_Listener_Configuration.worker.01] INFO  org.mule.lifecycle.AbstractLifecycleManager - Starting: 'connector.smtp.mule.default.dispatcher.1852544800'. Object is: SmtpMessageDispatcher
+2015-12-04 18:26:34,835 [[exe42].HTTP_Listener_Configuration.worker.01] ERROR org.mule.exception.DefaultMessagingExceptionStrategy - 
+********************************************************************************
+Message               : Failed to route event via endpoint: DefaultOutboundEndpoint{endpointUri=smtp://integracaosistemas15:<password>@smtp.gmail.com, connector=SmtpConnector
+{
+  name=connector.smtp.mule.default
+  lifecycle=start
+  this=7e642b88
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[smtp]
+  serviceOverrides=<none>
+}
+,  name='endpoint.smtp.integracaosistemas15.gmail.com.587', mep=ONE_WAY, properties={fromAddress=integracaosistemas15@gmail.com, toAddresses=mario.gustavo.pereira@gmail.com, subject=hello!}, transactionConfig=Transaction{factory=null, action=INDIFFERENT, timeout=0}, deleteUnacceptedMessages=false, initialState=started, responseTimeout=10000, endpointEncoding=UTF-8, disableTransportTransformer=false}. Message payload is of type: MimeMessage
+Type                  : org.mule.api.transport.DispatchException
+Code                  : MULE_ERROR--2
+JavaDoc               : http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transport/DispatchException.html
+Payload               : javax.mail.internet.MimeMessage@76f312fb
+********************************************************************************
+Exception stack is:
+1. 530 5.7.0 Must issue a STARTTLS command first. t2sm7850662wmt.1 - gsmtp
+ (com.sun.mail.smtp.SMTPSendFailedException)
+  com.sun.mail.smtp.SMTPTransport:1829 (null)
+2. Failed to route event via endpoint: DefaultOutboundEndpoint{endpointUri=smtp://integracaosistemas15:<password>@smtp.gmail.com, connector=SmtpConnector
+{
+  name=connector.smtp.mule.default
+  lifecycle=start
+  this=7e642b88
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[smtp]
+  serviceOverrides=<none>
+}
+,  name='endpoint.smtp.integracaosistemas15.gmail.com.587', mep=ONE_WAY, properties={fromAddress=integracaosistemas15@gmail.com, toAddresses=mario.gustavo.pereira@gmail.com, subject=hello!}, transactionConfig=Transaction{factory=null, action=INDIFFERENT, timeout=0}, deleteUnacceptedMessages=false, initialState=started, responseTimeout=10000, endpointEncoding=UTF-8, disableTransportTransformer=false}. Message payload is of type: MimeMessage (org.mule.api.transport.DispatchException)
+  org.mule.transport.AbstractMessageDispatcher:117 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transport/DispatchException.html)
+********************************************************************************
+Root Exception stack trace:
+com.sun.mail.smtp.SMTPSendFailedException: 530 5.7.0 Must issue a STARTTLS command first. t2sm7850662wmt.1 - gsmtp
+
+	at com.sun.mail.smtp.SMTPTransport.issueSendCommand(SMTPTransport.java:1829)
+	at com.sun.mail.smtp.SMTPTransport.mailFrom(SMTPTransport.java:1368)
+	at com.sun.mail.smtp.SMTPTransport.sendMessage(SMTPTransport.java:886)
+	at org.mule.transport.email.SmtpMessageDispatcher.sendMailMessage(SmtpMessageDispatcher.java:131)
+	at org.mule.transport.email.SmtpMessageDispatcher.doDispatch(SmtpMessageDispatcher.java:103)
+	at org.mule.transport.AbstractMessageDispatcher.process(AbstractMessageDispatcher.java:107)
+	at org.mule.transport.AbstractConnector$DispatcherMessageProcessor.process(AbstractConnector.java:2686)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.processor.BlockingProcessorExecutor.executeNext(BlockingProcessorExecutor.java:94)
+	at org.mule.processor.BlockingProcessorExecutor.execute(BlockingProcessorExecutor.java:56)
+	at org.mule.processor.AsyncInterceptingMessageProcessor.process(AsyncInterceptingMessageProcessor.java:102)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.processor.BlockingProcessorExecutor.executeNext(BlockingProcessorExecutor.java:94)
+	at org.mule.processor.BlockingProcessorExecutor.execute(BlockingProcessorExecutor.java:56)
+	at org.mule.endpoint.outbound.OutboundResponsePropertiesMessageProcessor.process(OutboundResponsePropertiesMessageProcessor.java:35)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.processor.BlockingProcessorExecutor.executeNext(BlockingProcessorExecutor.java:94)
+	at org.mule.processor.BlockingProcessorExecutor.execute(BlockingProcessorExecutor.java:56)
+	at org.mule.processor.EndpointTransactionalInterceptingMessageProcessor$1.process(EndpointTransactionalInterceptingMessageProcessor.java:46)
+	at org.mule.processor.EndpointTransactionalInterceptingMessageProcessor$1.process(EndpointTransactionalInterceptingMessageProcessor.java:43)
+	at org.mule.execution.ExecuteCallbackInterceptor.execute(ExecuteCallbackInterceptor.java:16)
+	at org.mule.execution.BeginAndResolveTransactionInterceptor.execute(BeginAndResolveTransactionInterceptor.java:67)
+	at org.mule.execution.ResolvePreviousTransactionInterceptor.execute(ResolvePreviousTransactionInterceptor.java:44)
+	at org.mule.execution.SuspendXaTransactionInterceptor.execute(SuspendXaTransactionInterceptor.java:50)
+	at org.mule.execution.ValidateTransactionalStateInterceptor.execute(ValidateTransactionalStateInterceptor.java:40)
+	at org.mule.execution.IsolateCurrentTransactionInterceptor.execute(IsolateCurrentTransactionInterceptor.java:41)
+	at org.mule.execution.ExternalTransactionInt...
+********************************************************************************
+
+2015-12-04 18:28:16,774 [[exe42].HTTP_Listener_Configuration.worker.01] ERROR org.mule.exception.DefaultMessagingExceptionStrategy - 
+********************************************************************************
+Message               : Failed to route event via endpoint: DefaultOutboundEndpoint{endpointUri=smtp://integracaosistemas15:<password>@smtp.gmail.com, connector=SmtpConnector
+{
+  name=connector.smtp.mule.default
+  lifecycle=start
+  this=7e642b88
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[smtp]
+  serviceOverrides=<none>
+}
+,  name='endpoint.smtp.integracaosistemas15.gmail.com.587', mep=ONE_WAY, properties={fromAddress=integracaosistemas15@gmail.com, toAddresses=mario.gustavo.pereira@gmail.com, subject=hello!}, transactionConfig=Transaction{factory=null, action=INDIFFERENT, timeout=0}, deleteUnacceptedMessages=false, initialState=started, responseTimeout=10000, endpointEncoding=UTF-8, disableTransportTransformer=false}. Message payload is of type: MimeMessage
+Type                  : org.mule.api.transport.DispatchException
+Code                  : MULE_ERROR--2
+JavaDoc               : http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transport/DispatchException.html
+Payload               : javax.mail.internet.MimeMessage@7d71acbd
+********************************************************************************
+Exception stack is:
+1. 530 5.7.0 Must issue a STARTTLS command first. t2sm7850662wmt.1 - gsmtp
+ (com.sun.mail.smtp.SMTPSendFailedException)
+  com.sun.mail.smtp.SMTPTransport:1829 (null)
+2. Failed to route event via endpoint: DefaultOutboundEndpoint{endpointUri=smtp://integracaosistemas15:<password>@smtp.gmail.com, connector=SmtpConnector
+{
+  name=connector.smtp.mule.default
+  lifecycle=start
+  this=7e642b88
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[smtp]
+  serviceOverrides=<none>
+}
+,  name='endpoint.smtp.integracaosistemas15.gmail.com.587', mep=ONE_WAY, properties={fromAddress=integracaosistemas15@gmail.com, toAddresses=mario.gustavo.pereira@gmail.com, subject=hello!}, transactionConfig=Transaction{factory=null, action=INDIFFERENT, timeout=0}, deleteUnacceptedMessages=false, initialState=started, responseTimeout=10000, endpointEncoding=UTF-8, disableTransportTransformer=false}. Message payload is of type: MimeMessage (org.mule.api.transport.DispatchException)
+  org.mule.transport.AbstractMessageDispatcher:117 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transport/DispatchException.html)
+********************************************************************************
+Root Exception stack trace:
+com.sun.mail.smtp.SMTPSendFailedException: 530 5.7.0 Must issue a STARTTLS command first. t2sm7850662wmt.1 - gsmtp
+
+	at com.sun.mail.smtp.SMTPTransport.issueSendCommand(SMTPTransport.java:1829)
+	at com.sun.mail.smtp.SMTPTransport.mailFrom(SMTPTransport.java:1368)
+	at com.sun.mail.smtp.SMTPTransport.sendMessage(SMTPTransport.java:886)
+	at org.mule.transport.email.SmtpMessageDispatcher.sendMailMessage(SmtpMessageDispatcher.java:131)
+	at org.mule.transport.email.SmtpMessageDispatcher.doDispatch(SmtpMessageDispatcher.java:103)
+	at org.mule.transport.AbstractMessageDispatcher.process(AbstractMessageDispatcher.java:107)
+	at org.mule.transport.AbstractConnector$DispatcherMessageProcessor.process(AbstractConnector.java:2686)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.processor.BlockingProcessorExecutor.executeNext(BlockingProcessorExecutor.java:94)
+	at org.mule.processor.BlockingProcessorExecutor.execute(BlockingProcessorExecutor.java:56)
+	at org.mule.processor.AsyncInterceptingMessageProcessor.process(AsyncInterceptingMessageProcessor.java:102)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.processor.BlockingProcessorExecutor.executeNext(BlockingProcessorExecutor.java:94)
+	at org.mule.processor.BlockingProcessorExecutor.execute(BlockingProcessorExecutor.java:56)
+	at org.mule.endpoint.outbound.OutboundResponsePropertiesMessageProcessor.process(OutboundResponsePropertiesMessageProcessor.java:35)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.processor.BlockingProcessorExecutor.executeNext(BlockingProcessorExecutor.java:94)
+	at org.mule.processor.BlockingProcessorExecutor.execute(BlockingProcessorExecutor.java:56)
+	at org.mule.processor.EndpointTransactionalInterceptingMessageProcessor$1.process(EndpointTransactionalInterceptingMessageProcessor.java:46)
+	at org.mule.processor.EndpointTransactionalInterceptingMessageProcessor$1.process(EndpointTransactionalInterceptingMessageProcessor.java:43)
+	at org.mule.execution.ExecuteCallbackInterceptor.execute(ExecuteCallbackInterceptor.java:16)
+	at org.mule.execution.BeginAndResolveTransactionInterceptor.execute(BeginAndResolveTransactionInterceptor.java:67)
+	at org.mule.execution.ResolvePreviousTransactionInterceptor.execute(ResolvePreviousTransactionInterceptor.java:44)
+	at org.mule.execution.SuspendXaTransactionInterceptor.execute(SuspendXaTransactionInterceptor.java:50)
+	at org.mule.execution.ValidateTransactionalStateInterceptor.execute(ValidateTransactionalStateInterceptor.java:40)
+	at org.mule.execution.IsolateCurrentTransactionInterceptor.execute(IsolateCurrentTransactionInterceptor.java:41)
+	at org.mule.execution.ExternalTransactionInt...
+********************************************************************************
+
+2015-12-04 18:28:18,693 [[exe42].HTTP_Listener_Configuration.worker.01] ERROR org.mule.exception.DefaultMessagingExceptionStrategy - 
+********************************************************************************
+Message               : Failed to route event via endpoint: DefaultOutboundEndpoint{endpointUri=smtp://integracaosistemas15:<password>@smtp.gmail.com, connector=SmtpConnector
+{
+  name=connector.smtp.mule.default
+  lifecycle=start
+  this=7e642b88
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[smtp]
+  serviceOverrides=<none>
+}
+,  name='endpoint.smtp.integracaosistemas15.gmail.com.587', mep=ONE_WAY, properties={fromAddress=integracaosistemas15@gmail.com, toAddresses=mario.gustavo.pereira@gmail.com, subject=hello!}, transactionConfig=Transaction{factory=null, action=INDIFFERENT, timeout=0}, deleteUnacceptedMessages=false, initialState=started, responseTimeout=10000, endpointEncoding=UTF-8, disableTransportTransformer=false}. Message payload is of type: MimeMessage
+Type                  : org.mule.api.transport.DispatchException
+Code                  : MULE_ERROR--2
+JavaDoc               : http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transport/DispatchException.html
+Payload               : javax.mail.internet.MimeMessage@7ebc0a07
+********************************************************************************
+Exception stack is:
+1. 530 5.7.0 Must issue a STARTTLS command first. t2sm7850662wmt.1 - gsmtp
+ (com.sun.mail.smtp.SMTPSendFailedException)
+  com.sun.mail.smtp.SMTPTransport:1829 (null)
+2. Failed to route event via endpoint: DefaultOutboundEndpoint{endpointUri=smtp://integracaosistemas15:<password>@smtp.gmail.com, connector=SmtpConnector
+{
+  name=connector.smtp.mule.default
+  lifecycle=start
+  this=7e642b88
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[smtp]
+  serviceOverrides=<none>
+}
+,  name='endpoint.smtp.integracaosistemas15.gmail.com.587', mep=ONE_WAY, properties={fromAddress=integracaosistemas15@gmail.com, toAddresses=mario.gustavo.pereira@gmail.com, subject=hello!}, transactionConfig=Transaction{factory=null, action=INDIFFERENT, timeout=0}, deleteUnacceptedMessages=false, initialState=started, responseTimeout=10000, endpointEncoding=UTF-8, disableTransportTransformer=false}. Message payload is of type: MimeMessage (org.mule.api.transport.DispatchException)
+  org.mule.transport.AbstractMessageDispatcher:117 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transport/DispatchException.html)
+********************************************************************************
+Root Exception stack trace:
+com.sun.mail.smtp.SMTPSendFailedException: 530 5.7.0 Must issue a STARTTLS command first. t2sm7850662wmt.1 - gsmtp
+
+	at com.sun.mail.smtp.SMTPTransport.issueSendCommand(SMTPTransport.java:1829)
+	at com.sun.mail.smtp.SMTPTransport.mailFrom(SMTPTransport.java:1368)
+	at com.sun.mail.smtp.SMTPTransport.sendMessage(SMTPTransport.java:886)
+	at org.mule.transport.email.SmtpMessageDispatcher.sendMailMessage(SmtpMessageDispatcher.java:131)
+	at org.mule.transport.email.SmtpMessageDispatcher.doDispatch(SmtpMessageDispatcher.java:103)
+	at org.mule.transport.AbstractMessageDispatcher.process(AbstractMessageDispatcher.java:107)
+	at org.mule.transport.AbstractConnector$DispatcherMessageProcessor.process(AbstractConnector.java:2686)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.processor.BlockingProcessorExecutor.executeNext(BlockingProcessorExecutor.java:94)
+	at org.mule.processor.BlockingProcessorExecutor.execute(BlockingProcessorExecutor.java:56)
+	at org.mule.processor.AsyncInterceptingMessageProcessor.process(AsyncInterceptingMessageProcessor.java:102)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.processor.BlockingProcessorExecutor.executeNext(BlockingProcessorExecutor.java:94)
+	at org.mule.processor.BlockingProcessorExecutor.execute(BlockingProcessorExecutor.java:56)
+	at org.mule.endpoint.outbound.OutboundResponsePropertiesMessageProcessor.process(OutboundResponsePropertiesMessageProcessor.java:35)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.processor.BlockingProcessorExecutor.executeNext(BlockingProcessorExecutor.java:94)
+	at org.mule.processor.BlockingProcessorExecutor.execute(BlockingProcessorExecutor.java:56)
+	at org.mule.processor.EndpointTransactionalInterceptingMessageProcessor$1.process(EndpointTransactionalInterceptingMessageProcessor.java:46)
+	at org.mule.processor.EndpointTransactionalInterceptingMessageProcessor$1.process(EndpointTransactionalInterceptingMessageProcessor.java:43)
+	at org.mule.execution.ExecuteCallbackInterceptor.execute(ExecuteCallbackInterceptor.java:16)
+	at org.mule.execution.BeginAndResolveTransactionInterceptor.execute(BeginAndResolveTransactionInterceptor.java:67)
+	at org.mule.execution.ResolvePreviousTransactionInterceptor.execute(ResolvePreviousTransactionInterceptor.java:44)
+	at org.mule.execution.SuspendXaTransactionInterceptor.execute(SuspendXaTransactionInterceptor.java:50)
+	at org.mule.execution.ValidateTransactionalStateInterceptor.execute(ValidateTransactionalStateInterceptor.java:40)
+	at org.mule.execution.IsolateCurrentTransactionInterceptor.execute(IsolateCurrentTransactionInterceptor.java:41)
+	at org.mule.execution.ExternalTransactionInt...
+********************************************************************************
+
+2015-12-04 18:28:20,081 [[exe42].HTTP_Listener_Configuration.worker.01] INFO  org.mule.transport.email.SmtpMessageDispatcher - Connection closed by remote server. Reconnecting.
+2015-12-04 18:28:20,383 [[exe42].HTTP_Listener_Configuration.worker.01] ERROR org.mule.exception.DefaultMessagingExceptionStrategy - 
+********************************************************************************
+Message               : Failed to route event via endpoint: DefaultOutboundEndpoint{endpointUri=smtp://integracaosistemas15:<password>@smtp.gmail.com, connector=SmtpConnector
+{
+  name=connector.smtp.mule.default
+  lifecycle=start
+  this=7e642b88
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[smtp]
+  serviceOverrides=<none>
+}
+,  name='endpoint.smtp.integracaosistemas15.gmail.com.587', mep=ONE_WAY, properties={fromAddress=integracaosistemas15@gmail.com, toAddresses=mario.gustavo.pereira@gmail.com, subject=hello!}, transactionConfig=Transaction{factory=null, action=INDIFFERENT, timeout=0}, deleteUnacceptedMessages=false, initialState=started, responseTimeout=10000, endpointEncoding=UTF-8, disableTransportTransformer=false}. Message payload is of type: MimeMessage
+Type                  : org.mule.api.transport.DispatchException
+Code                  : MULE_ERROR--2
+JavaDoc               : http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transport/DispatchException.html
+Payload               : javax.mail.internet.MimeMessage@445cc698
+********************************************************************************
+Exception stack is:
+1. 530 5.7.0 Must issue a STARTTLS command first. q77sm4548584wmd.22 - gsmtp
+ (com.sun.mail.smtp.SMTPSendFailedException)
+  com.sun.mail.smtp.SMTPTransport:1829 (null)
+2. Failed to route event via endpoint: DefaultOutboundEndpoint{endpointUri=smtp://integracaosistemas15:<password>@smtp.gmail.com, connector=SmtpConnector
+{
+  name=connector.smtp.mule.default
+  lifecycle=start
+  this=7e642b88
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[smtp]
+  serviceOverrides=<none>
+}
+,  name='endpoint.smtp.integracaosistemas15.gmail.com.587', mep=ONE_WAY, properties={fromAddress=integracaosistemas15@gmail.com, toAddresses=mario.gustavo.pereira@gmail.com, subject=hello!}, transactionConfig=Transaction{factory=null, action=INDIFFERENT, timeout=0}, deleteUnacceptedMessages=false, initialState=started, responseTimeout=10000, endpointEncoding=UTF-8, disableTransportTransformer=false}. Message payload is of type: MimeMessage (org.mule.api.transport.DispatchException)
+  org.mule.transport.AbstractMessageDispatcher:117 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transport/DispatchException.html)
+********************************************************************************
+Root Exception stack trace:
+com.sun.mail.smtp.SMTPSendFailedException: 530 5.7.0 Must issue a STARTTLS command first. q77sm4548584wmd.22 - gsmtp
+
+	at com.sun.mail.smtp.SMTPTransport.issueSendCommand(SMTPTransport.java:1829)
+	at com.sun.mail.smtp.SMTPTransport.mailFrom(SMTPTransport.java:1368)
+	at com.sun.mail.smtp.SMTPTransport.sendMessage(SMTPTransport.java:886)
+	at org.mule.transport.email.SmtpMessageDispatcher.sendMailMessage(SmtpMessageDispatcher.java:131)
+	at org.mule.transport.email.SmtpMessageDispatcher.doDispatch(SmtpMessageDispatcher.java:103)
+	at org.mule.transport.AbstractMessageDispatcher.process(AbstractMessageDispatcher.java:107)
+	at org.mule.transport.AbstractConnector$DispatcherMessageProcessor.process(AbstractConnector.java:2686)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.processor.BlockingProcessorExecutor.executeNext(BlockingProcessorExecutor.java:94)
+	at org.mule.processor.BlockingProcessorExecutor.execute(BlockingProcessorExecutor.java:56)
+	at org.mule.processor.AsyncInterceptingMessageProcessor.process(AsyncInterceptingMessageProcessor.java:102)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.processor.BlockingProcessorExecutor.executeNext(BlockingProcessorExecutor.java:94)
+	at org.mule.processor.BlockingProcessorExecutor.execute(BlockingProcessorExecutor.java:56)
+	at org.mule.endpoint.outbound.OutboundResponsePropertiesMessageProcessor.process(OutboundResponsePropertiesMessageProcessor.java:35)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.processor.BlockingProcessorExecutor.executeNext(BlockingProcessorExecutor.java:94)
+	at org.mule.processor.BlockingProcessorExecutor.execute(BlockingProcessorExecutor.java:56)
+	at org.mule.processor.EndpointTransactionalInterceptingMessageProcessor$1.process(EndpointTransactionalInterceptingMessageProcessor.java:46)
+	at org.mule.processor.EndpointTransactionalInterceptingMessageProcessor$1.process(EndpointTransactionalInterceptingMessageProcessor.java:43)
+	at org.mule.execution.ExecuteCallbackInterceptor.execute(ExecuteCallbackInterceptor.java:16)
+	at org.mule.execution.BeginAndResolveTransactionInterceptor.execute(BeginAndResolveTransactionInterceptor.java:67)
+	at org.mule.execution.ResolvePreviousTransactionInterceptor.execute(ResolvePreviousTransactionInterceptor.java:44)
+	at org.mule.execution.SuspendXaTransactionInterceptor.execute(SuspendXaTransactionInterceptor.java:50)
+	at org.mule.execution.ValidateTransactionalStateInterceptor.execute(ValidateTransactionalStateInterceptor.java:40)
+	at org.mule.execution.IsolateCurrentTransactionInterceptor.execute(IsolateCurrentTransactionInterceptor.java:41)
+	at org.mule.execution.ExternalTransactionI...
+********************************************************************************
+
+2015-12-04 18:30:18,259 [[exe42].HTTP_Listener_Configuration.worker.01] ERROR org.mule.exception.DefaultMessagingExceptionStrategy - 
+********************************************************************************
+Message               : Failed to route event via endpoint: DefaultOutboundEndpoint{endpointUri=smtp://integracaosistemas15:<password>@smtp.gmail.com, connector=SmtpConnector
+{
+  name=connector.smtp.mule.default
+  lifecycle=start
+  this=7e642b88
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[smtp]
+  serviceOverrides=<none>
+}
+,  name='endpoint.smtp.integracaosistemas15.gmail.com.587', mep=ONE_WAY, properties={fromAddress=integracaosistemas15@gmail.com, toAddresses=mario.gustavo.pereira@gmail.com, subject=hello!}, transactionConfig=Transaction{factory=null, action=INDIFFERENT, timeout=0}, deleteUnacceptedMessages=false, initialState=started, responseTimeout=10000, endpointEncoding=UTF-8, disableTransportTransformer=false}. Message payload is of type: MimeMessage
+Type                  : org.mule.api.transport.DispatchException
+Code                  : MULE_ERROR--2
+JavaDoc               : http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transport/DispatchException.html
+Payload               : javax.mail.internet.MimeMessage@985397e
+********************************************************************************
+Exception stack is:
+1. 530 5.7.0 Must issue a STARTTLS command first. q77sm4548584wmd.22 - gsmtp
+ (com.sun.mail.smtp.SMTPSendFailedException)
+  com.sun.mail.smtp.SMTPTransport:1829 (null)
+2. Failed to route event via endpoint: DefaultOutboundEndpoint{endpointUri=smtp://integracaosistemas15:<password>@smtp.gmail.com, connector=SmtpConnector
+{
+  name=connector.smtp.mule.default
+  lifecycle=start
+  this=7e642b88
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[smtp]
+  serviceOverrides=<none>
+}
+,  name='endpoint.smtp.integracaosistemas15.gmail.com.587', mep=ONE_WAY, properties={fromAddress=integracaosistemas15@gmail.com, toAddresses=mario.gustavo.pereira@gmail.com, subject=hello!}, transactionConfig=Transaction{factory=null, action=INDIFFERENT, timeout=0}, deleteUnacceptedMessages=false, initialState=started, responseTimeout=10000, endpointEncoding=UTF-8, disableTransportTransformer=false}. Message payload is of type: MimeMessage (org.mule.api.transport.DispatchException)
+  org.mule.transport.AbstractMessageDispatcher:117 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transport/DispatchException.html)
+********************************************************************************
+Root Exception stack trace:
+com.sun.mail.smtp.SMTPSendFailedException: 530 5.7.0 Must issue a STARTTLS command first. q77sm4548584wmd.22 - gsmtp
+
+	at com.sun.mail.smtp.SMTPTransport.issueSendCommand(SMTPTransport.java:1829)
+	at com.sun.mail.smtp.SMTPTransport.mailFrom(SMTPTransport.java:1368)
+	at com.sun.mail.smtp.SMTPTransport.sendMessage(SMTPTransport.java:886)
+	at org.mule.transport.email.SmtpMessageDispatcher.sendMailMessage(SmtpMessageDispatcher.java:131)
+	at org.mule.transport.email.SmtpMessageDispatcher.doDispatch(SmtpMessageDispatcher.java:103)
+	at org.mule.transport.AbstractMessageDispatcher.process(AbstractMessageDispatcher.java:107)
+	at org.mule.transport.AbstractConnector$DispatcherMessageProcessor.process(AbstractConnector.java:2686)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.processor.BlockingProcessorExecutor.executeNext(BlockingProcessorExecutor.java:94)
+	at org.mule.processor.BlockingProcessorExecutor.execute(BlockingProcessorExecutor.java:56)
+	at org.mule.processor.AsyncInterceptingMessageProcessor.process(AsyncInterceptingMessageProcessor.java:102)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.processor.BlockingProcessorExecutor.executeNext(BlockingProcessorExecutor.java:94)
+	at org.mule.processor.BlockingProcessorExecutor.execute(BlockingProcessorExecutor.java:56)
+	at org.mule.endpoint.outbound.OutboundResponsePropertiesMessageProcessor.process(OutboundResponsePropertiesMessageProcessor.java:35)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorNotificationExecutionInterceptor.execute(MessageProcessorNotificationExecutionInterceptor.java:107)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.execution.ExceptionToMessagingExceptionExecutionInterceptor.execute(ExceptionToMessagingExceptionExecutionInterceptor.java:24)
+	at org.mule.execution.MessageProcessorExecutionTemplate.execute(MessageProcessorExecutionTemplate.java:44)
+	at org.mule.processor.BlockingProcessorExecutor.executeNext(BlockingProcessorExecutor.java:94)
+	at org.mule.processor.BlockingProcessorExecutor.execute(BlockingProcessorExecutor.java:56)
+	at org.mule.processor.EndpointTransactionalInterceptingMessageProcessor$1.process(EndpointTransactionalInterceptingMessageProcessor.java:46)
+	at org.mule.processor.EndpointTransactionalInterceptingMessageProcessor$1.process(EndpointTransactionalInterceptingMessageProcessor.java:43)
+	at org.mule.execution.ExecuteCallbackInterceptor.execute(ExecuteCallbackInterceptor.java:16)
+	at org.mule.execution.BeginAndResolveTransactionInterceptor.execute(BeginAndResolveTransactionInterceptor.java:67)
+	at org.mule.execution.ResolvePreviousTransactionInterceptor.execute(ResolvePreviousTransactionInterceptor.java:44)
+	at org.mule.execution.SuspendXaTransactionInterceptor.execute(SuspendXaTransactionInterceptor.java:50)
+	at org.mule.execution.ValidateTransactionalStateInterceptor.execute(ValidateTransactionalStateInterceptor.java:40)
+	at org.mule.execution.IsolateCurrentTransactionInterceptor.execute(IsolateCurrentTransactionInterceptor.java:41)
+	at org.mule.execution.ExternalTransactionI...
+********************************************************************************
+
+2015-12-04 18:30:51,477 [main] INFO  org.mule.module.launcher.application.DefaultMuleApplication - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Initializing app 'exe42'                                 +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2015-12-04 18:30:51,640 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising RegistryBroker
+2015-12-04 18:30:51,709 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Starting discovery of extensions
+2015-12-04 18:30:51,794 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Discovered 1 extensions
+2015-12-04 18:30:51,794 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Registering extension validation (version 3.7)
+2015-12-04 18:30:51,840 [main] INFO  org.mule.config.spring.MuleArtifactContext - Refreshing org.mule.config.spring.MuleArtifactContext@23fb172e: startup date [Fri Dec 04 18:30:51 GMT 2015]; root of context hierarchy
+2015-12-04 18:30:52,759 [main] INFO  org.mule.config.spring.processors.NoDevkitInjectorProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2015-12-04 18:30:53,278 [main] WARN  org.springframework.beans.GenericTypeAwarePropertyDescriptor - Invalid JavaBean property 'port' being accessed! Ambiguous write methods found next to actually used [public void org.mule.endpoint.URIBuilder.setPort(java.lang.String)]: [public void org.mule.endpoint.URIBuilder.setPort(int)]
+2015-12-04 18:30:53,546 [main] WARN  org.mule.module.ognl.expression.OgnlExpressionEvaluator - OGNL module is deprecated and will be removed in Mule 4.0. Use MEL expressions instead.
+2015-12-04 18:30:53,807 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising connector: Gmail
+2015-12-04 18:30:53,905 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising model: _muleSystemModel
+2015-12-04 18:30:53,910 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: exe42Flow
+2015-12-04 18:30:53,910 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@181d8899
+2015-12-04 18:30:53,936 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: exe42Flow.stage1
+2015-12-04 18:30:53,950 [main] INFO  org.mule.util.journal.TransactionJournal - Using files for tx logs C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\.\.mule\exe42\queue-tx-log\tx1.log and C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\.\.mule\exe42\queue-tx-log\tx2.log
+2015-12-04 18:30:53,955 [main] INFO  org.mule.util.journal.TransactionJournal - Using files for tx logs C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\.\.mule\exe42\queue-xa-tx-log\tx1.log and C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\.\.mule\exe42\queue-xa-tx-log\tx2.log
+2015-12-04 18:30:54,125 [main] INFO  org.mule.config.spring.SpringXmlConfigurationBuilder - Configured Mule using "org.mule.config.spring.SpringXmlConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\apps\exe42\exe42.xml'}]"
+2015-12-04 18:30:54,125 [main] INFO  org.mule.config.builders.AutoConfigurationBuilder - Configured Mule using "org.mule.config.builders.AutoConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\apps\exe42\exe42.xml'}]"
+2015-12-04 18:30:54,126 [main] INFO  org.mule.module.launcher.application.DefaultMuleApplication - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Starting app 'exe42'                                     +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2015-12-04 18:30:54,127 [main] INFO  org.mule.util.queue.QueueXaResourceManager - Starting ResourceManager
+2015-12-04 18:30:54,127 [main] INFO  org.mule.util.queue.QueueXaResourceManager - Started ResourceManager
+2015-12-04 18:30:54,165 [main] INFO  org.mule.module.http.internal.listener.DefaultHttpListenerConfig - Listening for requests on http://0.0.0.0:8082
+2015-12-04 18:30:54,167 [main] INFO  org.mule.transport.email.GmailSmtpConnector - Connected: GmailSmtpConnector
+{
+  name=Gmail
+  lifecycle=initialise
+  this=cb7fa71
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[smtp]
+  serviceOverrides=<none>
+}
+
+2015-12-04 18:30:54,167 [main] INFO  org.mule.transport.email.GmailSmtpConnector - Starting: GmailSmtpConnector
+{
+  name=Gmail
+  lifecycle=initialise
+  this=cb7fa71
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[smtp]
+  serviceOverrides=<none>
+}
+
+2015-12-04 18:30:54,168 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Starting connector: Gmail
+2015-12-04 18:30:54,170 [main] INFO  org.mule.modules.oauth2.provider.agents.DefaultSplashScreenAgent - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ DevKit Extensions (0) used in this application 
+                             +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2015-12-04 18:30:54,172 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Starting model: _muleSystemModel
+2015-12-04 18:30:54,173 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: exe42Flow
+2015-12-04 18:30:54,174 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: exe42Flow.stage1
+2015-12-04 18:30:54,214 [main] INFO  org.mule.module.management.agent.WrapperManagerAgent - This JVM hasn't been launched by the wrapper, the agent will not run.
+2015-12-04 18:31:03,282 [main] INFO  org.mule.module.management.agent.AbstractJmxAgent - Registered Connector Service with name Mule.exe42:type=Connector,name="Gmail.1"
+2015-12-04 18:31:03,293 [main] INFO  org.mule.DefaultMuleContext - 
+**********************************************************************
+* Application: exe42                                                 *
+* OS encoding: \, Mule encoding: UTF-8                               *
+*                                                                    *
+* Agents Running:                                                    *
+*   Batch module default engine                                      *
+*   DevKit Extension Information                                     *
+*   JMX Agent                                                        *
+*   Wrapper Manager                                                  *
+**********************************************************************
+2015-12-04 18:31:08,100 [[exe42].HTTP_Listener_Configuration.worker.01] INFO  org.mule.transport.service.DefaultTransportServiceDescriptor - Loading default outbound transformer: org.mule.transport.email.transformers.ObjectToMimeMessage
+2015-12-04 18:31:08,106 [[exe42].HTTP_Listener_Configuration.worker.01] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising: 'Gmail.dispatcher.1800938112'. Object is: SmtpMessageDispatcher
+2015-12-04 18:31:18,054 [[exe42].HTTP_Listener_Configuration.worker.01] INFO  org.mule.lifecycle.AbstractLifecycleManager - Starting: 'Gmail.dispatcher.1800938112'. Object is: SmtpMessageDispatcher
+2015-12-04 18:32:10,014 [main] INFO  org.mule.module.launcher.application.DefaultMuleApplication - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Initializing app 'exe42'                                 +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2015-12-04 18:32:10,338 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising RegistryBroker
+2015-12-04 18:32:10,406 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Starting discovery of extensions
+2015-12-04 18:32:10,498 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Discovered 1 extensions
+2015-12-04 18:32:10,498 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Registering extension validation (version 3.7)
+2015-12-04 18:32:10,526 [main] INFO  org.mule.config.spring.MuleArtifactContext - Refreshing org.mule.config.spring.MuleArtifactContext@23fb172e: startup date [Fri Dec 04 18:32:10 GMT 2015]; root of context hierarchy
+2015-12-04 18:32:11,449 [main] INFO  org.mule.config.spring.processors.NoDevkitInjectorProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2015-12-04 18:32:11,943 [main] WARN  org.springframework.beans.GenericTypeAwarePropertyDescriptor - Invalid JavaBean property 'port' being accessed! Ambiguous write methods found next to actually used [public void org.mule.endpoint.URIBuilder.setPort(java.lang.String)]: [public void org.mule.endpoint.URIBuilder.setPort(int)]
+2015-12-04 18:32:12,184 [main] WARN  org.mule.module.ognl.expression.OgnlExpressionEvaluator - OGNL module is deprecated and will be removed in Mule 4.0. Use MEL expressions instead.
+2015-12-04 18:32:12,454 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising connector: Gmail
+2015-12-04 18:32:12,557 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising model: _muleSystemModel
+2015-12-04 18:32:12,560 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: exe42Flow
+2015-12-04 18:32:12,561 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@181d8899
+2015-12-04 18:32:12,586 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: exe42Flow.stage1
+2015-12-04 18:32:12,602 [main] INFO  org.mule.util.journal.TransactionJournal - Using files for tx logs C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\.\.mule\exe42\queue-tx-log\tx1.log and C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\.\.mule\exe42\queue-tx-log\tx2.log
+2015-12-04 18:32:12,608 [main] INFO  org.mule.util.journal.TransactionJournal - Using files for tx logs C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\.\.mule\exe42\queue-xa-tx-log\tx1.log and C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\.\.mule\exe42\queue-xa-tx-log\tx2.log
+2015-12-04 18:32:12,791 [main] INFO  org.mule.config.spring.SpringXmlConfigurationBuilder - Configured Mule using "org.mule.config.spring.SpringXmlConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\apps\exe42\exe42.xml'}]"
+2015-12-04 18:32:12,791 [main] INFO  org.mule.config.builders.AutoConfigurationBuilder - Configured Mule using "org.mule.config.builders.AutoConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\Mário\Desktop\DEI\IS\IS-Project3\exercises-mgreis\.mule\apps\exe42\exe42.xml'}]"
+2015-12-04 18:32:12,792 [main] INFO  org.mule.module.launcher.application.DefaultMuleApplication - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Starting app 'exe42'                                     +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2015-12-04 18:32:12,793 [main] INFO  org.mule.util.queue.QueueXaResourceManager - Starting ResourceManager
+2015-12-04 18:32:12,793 [main] INFO  org.mule.util.queue.QueueXaResourceManager - Started ResourceManager
+2015-12-04 18:32:12,830 [main] INFO  org.mule.module.http.internal.listener.DefaultHttpListenerConfig - Listening for requests on http://0.0.0.0:8082
+2015-12-04 18:32:12,832 [main] INFO  org.mule.transport.email.GmailSmtpConnector - Connected: GmailSmtpConnector
+{
+  name=Gmail
+  lifecycle=initialise
+  this=cb7fa71
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[smtp]
+  serviceOverrides=<none>
+}
+
+2015-12-04 18:32:12,832 [main] INFO  org.mule.transport.email.GmailSmtpConnector - Starting: GmailSmtpConnector
+{
+  name=Gmail
+  lifecycle=initialise
+  this=cb7fa71
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[smtp]
+  serviceOverrides=<none>
+}
+
+2015-12-04 18:32:12,833 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Starting connector: Gmail
+2015-12-04 18:32:12,835 [main] INFO  org.mule.modules.oauth2.provider.agents.DefaultSplashScreenAgent - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ DevKit Extensions (0) used in this application 
+                             +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2015-12-04 18:32:12,838 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Starting model: _muleSystemModel
+2015-12-04 18:32:12,839 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: exe42Flow
+2015-12-04 18:32:12,840 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: exe42Flow.stage1
+2015-12-04 18:32:12,882 [main] INFO  org.mule.module.management.agent.WrapperManagerAgent - This JVM hasn't been launched by the wrapper, the agent will not run.
+2015-12-04 18:32:21,908 [main] INFO  org.mule.module.management.agent.AbstractJmxAgent - Registered Connector Service with name Mule.exe42:type=Connector,name="Gmail.1"
+2015-12-04 18:32:21,926 [main] INFO  org.mule.DefaultMuleContext - 
+**********************************************************************
+* Application: exe42                                                 *
+* OS encoding: \, Mule encoding: UTF-8                               *
+*                                                                    *
+* Agents Running:                                                    *
+*   Batch module default engine                                      *
+*   DevKit Extension Information                                     *
+*   JMX Agent                                                        *
+*   Wrapper Manager                                                  *
+**********************************************************************
+2015-12-04 18:32:34,623 [[exe42].HTTP_Listener_Configuration.worker.01] INFO  org.mule.transport.service.DefaultTransportServiceDescriptor - Loading default outbound transformer: org.mule.transport.email.transformers.ObjectToMimeMessage
+2015-12-04 18:32:34,630 [[exe42].HTTP_Listener_Configuration.worker.01] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising: 'Gmail.dispatcher.1831446776'. Object is: SmtpMessageDispatcher
+2015-12-04 18:32:44,673 [[exe42].HTTP_Listener_Configuration.worker.01] INFO  org.mule.lifecycle.AbstractLifecycleManager - Starting: 'Gmail.dispatcher.1831446776'. Object is: SmtpMessageDispatcher
