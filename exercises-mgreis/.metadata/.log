@@ -702,3 +702,111 @@ java.lang.ArrayIndexOutOfBoundsException: -1
 
 !ENTRY org.eclipse.ui 4 4 2015-12-07 20:30:12.714
 !MESSAGE Could not retrieve EHandlerService or ICommandService from context evaluation context fororg.eclipse.wst.xml.ui.reload.dependencies
+!SESSION 2015-12-08 08:56:20.538 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_66
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=pt_PT
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.mule.tooling.core 2 0 2015-12-08 08:57:22.094
+!MESSAGE C:\Users\Mário\.m2\repository does not exist or contain a maven repository
+
+!ENTRY org.mule.tooling.core 2 0 2015-12-08 08:57:22.440
+!MESSAGE C:\Users\Mário\.m2\repository does not exist or contain a maven repository
+
+!ENTRY org.mule.tooling.core 1 0 2015-12-08 08:57:57.651
+!MESSAGE Forcing the usage of 'current' in the schemaLocation of CMIS [version 1.1, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/cmis/1.1/mule-cmis.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/cmis/current/mule-cmis.xsd
+Forcing the usage of 'current' in the schemaLocation of Facebook [version 2.0, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/facebook/2.0/mule-facebook.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/facebook/current/mule-facebook.xsd
+Forcing the usage of 'current' in the schemaLocation of Magento [version 1.1, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/magento/1.1/mule-magento.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/magento/current/mule-magento.xsd
+Forcing the usage of 'current' in the schemaLocation of Mongo DB [version 2.0, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/mongo/2.0/mule-mongo.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/mongo/current/mule-mongo.xsd
+Forcing the usage of 'current' in the schemaLocation of Amazon S3 [version 2.0, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/s3/2.0/mule-s3.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/s3/current/mule-s3.xsd
+Forcing the usage of 'current' in the schemaLocation of Salesforce [version 5.0, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/sfdc/5.0/mule-sfdc.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/sfdc/current/mule-sfdc.xsd
+Forcing the usage of 'current' in the schemaLocation of Amazon SQS [version 1.0, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/sqs/1.0/mule-sqs.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/sqs/current/mule-sqs.xsd
+Forcing the usage of 'current' in the schemaLocation of Twitter [version 2.4, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/twitter/2.4/mule-twitter.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/twitter/current/mule-twitter.xsd
+
+!ENTRY org.mule.tooling.core 1 0 2015-12-08 08:57:57.653
+!MESSAGE Forcing the usage of 'current' in the schemaLocation of CMIS [version 1.1, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/cmis/1.1/mule-cmis.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/cmis/current/mule-cmis.xsd
+Forcing the usage of 'current' in the schemaLocation of Facebook [version 2.0, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/facebook/2.0/mule-facebook.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/facebook/current/mule-facebook.xsd
+Forcing the usage of 'current' in the schemaLocation of Magento [version 1.1, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/magento/1.1/mule-magento.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/magento/current/mule-magento.xsd
+Forcing the usage of 'current' in the schemaLocation of Mongo DB [version 2.0, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/mongo/2.0/mule-mongo.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/mongo/current/mule-mongo.xsd
+Forcing the usage of 'current' in the schemaLocation of Amazon S3 [version 2.0, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/s3/2.0/mule-s3.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/s3/current/mule-s3.xsd
+Forcing the usage of 'current' in the schemaLocation of Salesforce [version 5.0, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/sfdc/5.0/mule-sfdc.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/sfdc/current/mule-sfdc.xsd
+Forcing the usage of 'current' in the schemaLocation of Amazon SQS [version 1.0, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/sqs/1.0/mule-sqs.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/sqs/current/mule-sqs.xsd
+Forcing the usage of 'current' in the schemaLocation of Twitter [version 2.4, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/twitter/2.4/mule-twitter.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/twitter/current/mule-twitter.xsd
+
+!ENTRY org.eclipse.jface 2 0 2015-12-08 09:03:47.931
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2015-12-08 09:03:47.931
+!MESSAGE A conflict occurred for CTRL+F:
+Binding(CTRL+F,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.findReplace,Find and Replace,
+		Find and replace text,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@45451333,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+F,
+	ParameterizedCommand(Command(org.mule.tooling.ui.dfl.contribution.commands.searchCommand,Find/Replace,
+		Find/Replace,
+		Category(org.mule.tooling.ui.commandcategory,org.mule.tooling.ui.commandcategory,Category for menu commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6afafa48,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.mule.tooling.contexts.mulePropertiesEditor,,,system)
+Binding(CTRL+F,
+	ParameterizedCommand(Command(org.mule.tooling.commands.focusSearchCommand,Focus Search Command,
+		Focus Search in Palette,
+		Category(org.mule.tooling.ui.commandcategory,org.mule.tooling.ui.commandcategory,Category for menu commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@13e880b5,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.mule.tooling.contexts.mulePropertiesEditor,,,system)
+
+!ENTRY org.eclipse.ui 4 4 2015-12-08 09:25:10.704
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.text.contentAssist.proposals: {org.eclipse.ui.contentassist.ContentAssistHandler$4@672c8149} vs {org.eclipse.ui.contentassist.ContentAssistHandler$4@418068a7}
+
+!ENTRY org.eclipse.ui 4 4 2015-12-08 09:25:10.704
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.text.contentAssist.proposals: {org.eclipse.ui.contentassist.ContentAssistHandler$4@672c8149} vs {org.eclipse.ui.contentassist.ContentAssistHandler$4@418068a7}
+
+!ENTRY org.eclipse.ui 4 0 2015-12-08 09:25:41.371
+!MESSAGE Unhandled event loop exception
+!STACK 0
+org.eclipse.swt.SWTException: Widget is disposed
+	at org.eclipse.swt.SWT.error(SWT.java:4441)
+	at org.eclipse.swt.SWT.error(SWT.java:4356)
+	at org.eclipse.swt.SWT.error(SWT.java:4327)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:476)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:348)
+	at org.eclipse.swt.widgets.Button.setImage(Button.java:931)
+	at org.mule.tooling.ui.modules.core.widgets.editors.ChildElementFieldEditor.initUI(ChildElementFieldEditor.java:461)
+	at org.mule.tooling.ui.modules.core.widgets.editors.ChildElementFieldEditor.doConfigure(ChildElementFieldEditor.java:336)
+	at org.mule.tooling.ui.modules.core.widgets.editors.ChildElementFieldEditor$2.widgetSelected(ChildElementFieldEditor.java:273)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:248)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4353)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1061)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4172)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3761)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1032)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:148)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:636)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:579)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:135)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
