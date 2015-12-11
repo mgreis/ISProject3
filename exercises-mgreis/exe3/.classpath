@@ -8,5 +8,7 @@
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java"/>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/resources"/>
 	<classpathentry kind="src" path="src/main/api"/>
+	<classpathentry kind="src" path="mappings"/>
+	<classpathentry kind="lib" path="C:/Users/Mário/Desktop/DEI/IS/IS-Project3/exercises-mgreis/mysql-connector-java-5.1.37-bin.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

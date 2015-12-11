@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:smtp="http://www.mulesoft.org/schema/mule/smtp" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/smtp http://www.mulesoft.org/schema/mule/smtp/current/mule-smtp.xsd">
+    <smtp:gmail-connector name="Gmail" validateConnections="true" doc:name="Gmail"/>
+    <flow name="exe5Flow">
+        <poll doc:name="Poll">
+            <set-payload value="Hello World" doc:name="Set Payload"/>
+        </poll>
+        <smtp:outbound-endpoint host="smtp.gmail.com" port="527" user="integracaosistemas15" password="sistemas15" connector-ref="Gmail" to="mario.gustavo.pereira@gmail.com" from="integracaosistemas15@gmail.com" subject="hello!" responseTimeout="10000" doc:name="SMTP"/>
+    </flow>
+</mule>
