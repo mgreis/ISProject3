@@ -6,7 +6,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import artifact.LoadXML;
+import artifact.LoadXMLResponse.Return;
 import artifact.LoadXMLService;
+import artifact.Report;
 
 public class Client {
 
@@ -16,7 +18,8 @@ public class Client {
 	public static void main(String[] args) {
 		LoadXMLService as = new LoadXMLService();
 		LoadXML asp = as.getLoadXMLPort();
-		asp.loadXML(readFile("exp.xml"));
+		Return r = asp.loadXML(readFile("exp.xml"));
+		if(r!=null)System.out.println("success");
 	}
 
 	static String readFile(String path) {

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
+    <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration">
+        <http:worker-threading-profile poolExhaustedAction="WAIT"/>
+    </http:listener-config>
+    <flow name="seminarFlow">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="mario" doc:name="HTTP"/>
+        <set-payload value="#[message.inboundProperties.'http.query.params'.get(&quot;id&quot;)]" doc:name="Set Payload"/>
+        <choice doc:name="Choice">
+            <when expression="#[message.payload==1]">
+                <set-payload value="the payload is equal to 1" doc:name="Set Payload"/>
+            </when>
+            <otherwise>
+                <set-payload value="the payload is not 1" doc:name="Set Payload"/>
+            </otherwise>
+        </choice>
+    </flow>
+</mule>

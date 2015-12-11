@@ -65,8 +65,8 @@ public class AddingSmartphones implements Callable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		eventContext.getMessage().setInvocationProperty("report", report);
-		return eventContext.getMessage().getPayload();
+		
+		return report;
 	}
 
 }

@@ -9,4 +9,13 @@
 <fullyQualifiedTypeName name="java.nio.file.Paths"/>
 <fullyQualifiedTypeName name="java.nio.file.Files"/>
 <fullyQualifiedTypeName name="java.nio.charset.StandardCharsets"/>
+<fullyQualifiedTypeName name="org.mule.api.annotations.expressions.Lookup"/>
+<fullyQualifiedTypeName name="org.mule.api.annotations.param.Payload"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="xml.Smartphone"/>
+<fullyQualifiedTypeName name="artifact.Report"/>
+<fullyQualifiedTypeName name="artifact.LoadXMLResponse.Return"/>
+<fullyQualifiedTypeName name="xml.Report"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

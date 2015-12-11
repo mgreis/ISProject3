@@ -1,6 +1,7 @@
 package webservice;
 
 import java.io.StringReader;
+import java.util.List;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -11,15 +12,23 @@ import javax.xml.transform.stream.StreamSource;
 
 import xml.ObjectFactory;
 import xml.Report;
+import xml.Smartphone;
 import xml.XmlHelper;
 
+import org.mule.api.MuleEventContext;
+import org.mule.api.annotations.expressions.Lookup;
+import org.mule.api.lifecycle.Callable;
+
+
 @WebService
-public class LoadXML {
+public class LoadXML {//implements Callable {
 	private volatile Report report=null;
+	//@Payload
+	//MuleEventContext eventContext;
 	
 
 	@WebMethod
-	public boolean loadXML(String xml) {
+	public Report loadXML(String xml) {
 		
 		//validate;
 		try {
@@ -43,10 +52,11 @@ public class LoadXML {
 			StringReader reader = new StringReader(xml);
 
 			report = (Report) unmarshaller.unmarshal(reader);
-			return true;
+			return report;
+			
 		} catch (JAXBException e) {
 			System.out.println("Error Unmarshalling XML");
-			return false;
+			return null;
 
 		}
 
@@ -57,8 +67,13 @@ public class LoadXML {
 		return report;
 	}
 	
-	private void setPayload(Report report){
-		//eventContext.getMessage().setInvocationProperty("report", report);
-	}
+	
+	
+
+	/*@Override
+	public Object onCall(MuleEventContext eventContext) throws Exception {
+		eventContext.getMessage().setInvocationProperty("report", report.getSmartphone());
+		return eventContext.getMessage().getPayload();
+	}*/
 
 }

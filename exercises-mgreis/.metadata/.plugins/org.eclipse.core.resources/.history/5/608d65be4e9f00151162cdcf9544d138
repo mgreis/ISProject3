@@ -1,0 +1,31 @@
+
+import org.mule.api.MuleEventContext;
+import org.mule.api.lifecycle.Callable;
+import java.util.Scanner;
+
+import xml.Report;
+import xml.Smartphone;
+
+public class exp implements Callable{
+
+	@Override
+	public Object onCall(MuleEventContext eventContext) throws Exception {
+		Report report = (Report)eventContext.getMessage().getPayload();
+		for(Smartphone s: report.getSmartphone()){
+			String aux = s.getDescription().get(1).getValue();
+			double size;
+			Scanner scanner = new Scanner(aux);
+			if(scanner.hasNextDouble()){
+				size = new Scanner(aux).nextDouble();
+				System.out.println (size);
+			
+			}
+			scanner.close();
+			
+		}
+		
+		return report;
+	}
+	
+
+}

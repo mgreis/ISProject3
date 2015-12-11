@@ -37,6 +37,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link LoadXMLResponse }
+     * 
+     */
+    public LoadXMLResponse createLoadXMLResponse() {
+        return new LoadXMLResponse();
+    }
+
+    /**
      * Create an instance of {@link GetReportResponse }
      * 
      */
@@ -69,14 +77,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LoadXMLResponse }
-     * 
-     */
-    public LoadXMLResponse createLoadXMLResponse() {
-        return new LoadXMLResponse();
-    }
-
-    /**
      * Create an instance of {@link GetReport }
      * 
      */
@@ -98,6 +98,14 @@ public class ObjectFactory {
      */
     public Price createPrice() {
         return new Price();
+    }
+
+    /**
+     * Create an instance of {@link LoadXMLResponse.Return }
+     * 
+     */
+    public LoadXMLResponse.Return createLoadXMLResponseReturn() {
+        return new LoadXMLResponse.Return();
     }
 
     /**

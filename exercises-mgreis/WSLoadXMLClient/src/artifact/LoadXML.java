@@ -38,13 +38,13 @@ public interface LoadXML {
      * 
      * @param arg0
      * @return
-     *     returns boolean
+     *     returns artifact.LoadXMLResponse.Return
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "loadXML", targetNamespace = "http://webservice/", className = "artifact.LoadXML_Type")
     @ResponseWrapper(localName = "loadXMLResponse", targetNamespace = "http://webservice/", className = "artifact.LoadXMLResponse")
-    public boolean loadXML(
+    public artifact.LoadXMLResponse.Return loadXML(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
 
