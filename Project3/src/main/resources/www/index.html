@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Subscribe</title>
+</head>
+<body>
+	<form action="post/do_subscribe" method="post">
+		<fieldset>
+			<legend>Subscribe:</legend>
+			<div>
+				<label for="email">Email</label> <input name="email" type="email" />
+			</div>
+			<div>
+				<label for="favoriteBrand">Favorite Brand</label> <input
+					name="favoriteBrand" type="text" />
+			</div>
+			<div>
+				<label for="minimumPrice">Minimum Price</label> <input
+					name="minimumPrice" type="number" min="0" step="any" />
+			</div>
+			<div>
+				<label for="maximumPrice">Maximum Price</label> <input
+					name="maximumPrice" type="number" min="0" step="any" />
+			</div>
+			<input type="Submit" />
+		</fieldset>
+	</form>
+	<form action="post/do_unsubscribe" method="post">
+		<fieldset>
+			<legend>Unsubscribe:</legend>
+			<div>
+				<label for="email">Email</label> <input name="email" type="email" />
+			</div>
+			<input type="Submit" />
+		</fieldset>
+	</form>
+</body>
+</html>
