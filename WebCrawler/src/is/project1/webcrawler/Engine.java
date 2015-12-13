@@ -5,7 +5,9 @@
  */
 package is.project1.webcrawler;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -22,10 +24,9 @@ import is.project1.xml.*;
 
 import java.math.BigDecimal;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
 
 import java.math.BigInteger;
+
 
 /**
  * The crawler itself. Gets the html from the pages in the web addresses on the
@@ -100,11 +101,18 @@ public class Engine extends Thread {
             }
         }
 
-        // pôr report no tópico em formato xml
+        //Send String by SOAP
         final String xml = XmlHelper.toString(report);
         LoadXMLService as = new LoadXMLService();
 		LoadXML asp = as.getLoadXMLPort();
 		String r = asp.loadXML(xml);
+		
+		//write to file;
+		PrintWriter pw = new PrintWriter(new File(report.getTimestamp()+".xml"));
+		pw.write(xml);
+		pw.close();
+		
+		//Success Message
 		System.out.println(r);
     }
 

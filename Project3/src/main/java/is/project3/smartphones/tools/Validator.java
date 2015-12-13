@@ -18,7 +18,7 @@ public class Validator implements Callable{
 			XmlHelper.validate(new StreamSource(new StringReader(xml)));
 		} catch (Exception ex) {
 			System.out.println("ERROR: Failed to validate.");
-			
+			//return null;
 
 		}
 		return xml;
