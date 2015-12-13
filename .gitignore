@@ -48,3 +48,8 @@ studio_id.xml
 # old
 /exercises-mgreis/.metadata
 /dropXMLdirectory
+
+# older projects
+/WebCrawler/build/
+/WebCrawler/dist/
+/WebCrawler/nbproject/private/

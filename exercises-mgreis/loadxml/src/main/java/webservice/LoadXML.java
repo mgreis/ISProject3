@@ -1,7 +1,7 @@
 package webservice;
 
 import java.io.StringReader;
-import java.util.List;
+
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -12,12 +12,9 @@ import javax.xml.transform.stream.StreamSource;
 
 import xml.ObjectFactory;
 import xml.Report;
-import xml.Smartphone;
 import xml.XmlHelper;
 
-import org.mule.api.MuleEventContext;
-import org.mule.api.annotations.expressions.Lookup;
-import org.mule.api.lifecycle.Callable;
+
 
 
 @WebService

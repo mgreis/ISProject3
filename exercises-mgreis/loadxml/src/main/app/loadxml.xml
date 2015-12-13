@@ -17,7 +17,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
     <db:mysql-config name="MySQL_Configuration" host="localhost" port="3306" user="root" database="isproject3" doc:name="MySQL Configuration"/>
     <flow name="loadXMLWebService">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/loadXML" doc:name="HTTP"/>
-        <cxf:jaxws-service doc:name="CXF" serviceClass="webservice.LoadXML"/>
+        <cxf:proxy-service doc:name="CXF" serviceClass="webservice.LoadXML" payload="body"/>
         <component doc:name="Java">
             <singleton-object class="webservice.LoadXML"/>
         </component>
