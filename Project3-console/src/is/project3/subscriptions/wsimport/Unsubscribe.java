@@ -7,16 +7,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for removeSubscription complex type.
+ * <p>Java class for unsubscribe complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="removeSubscription">
+ * &lt;complexType name="unsubscribe">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="arg0" type="{http://subscriptions.project3.is/}subscription" minOccurs="0"/>
+ *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -26,35 +26,35 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "removeSubscription", propOrder = {
-    "arg0"
+@XmlType(name = "unsubscribe", propOrder = {
+    "email"
 })
-public class RemoveSubscription {
+public class Unsubscribe {
 
-    protected Subscription arg0;
+    protected String email;
 
     /**
-     * Gets the value of the arg0 property.
+     * Gets the value of the email property.
      * 
      * @return
      *     possible object is
-     *     {@link Subscription }
+     *     {@link String }
      *     
      */
-    public Subscription getArg0() {
-        return arg0;
+    public String getEmail() {
+        return email;
     }
 
     /**
-     * Sets the value of the arg0 property.
+     * Sets the value of the email property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Subscription }
+     *     {@link String }
      *     
      */
-    public void setArg0(Subscription value) {
-        this.arg0 = value;
+    public void setEmail(String value) {
+        this.email = value;
     }
 
 }

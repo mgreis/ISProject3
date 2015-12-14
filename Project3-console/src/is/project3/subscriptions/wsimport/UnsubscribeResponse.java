@@ -8,12 +8,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for removeSubscriptionResponse complex type.
+ * <p>Java class for unsubscribeResponse complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="removeSubscriptionResponse">
+ * &lt;complexType name="unsubscribeResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -27,10 +27,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "removeSubscriptionResponse", propOrder = {
+@XmlType(name = "unsubscribeResponse", propOrder = {
     "_return"
 })
-public class RemoveSubscriptionResponse {
+public class UnsubscribeResponse {
 
     @XmlElement(name = "return")
     protected boolean _return;

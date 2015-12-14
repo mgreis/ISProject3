@@ -1,7 +1,6 @@
 
 package is.project3.subscriptions.wsimport;
 
-import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -26,44 +25,42 @@ public interface SubscriptionService {
 
     /**
      * 
-     * @param arg0
+     * @param favoriteBrand
+     * @param clientName
+     * @param maximumPrice
+     * @param minimumPrice
+     * @param email
      * @return
      *     returns boolean
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "removeSubscription", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.RemoveSubscription")
-    @ResponseWrapper(localName = "removeSubscriptionResponse", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.RemoveSubscriptionResponse")
-    public boolean removeSubscription(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Subscription arg0);
+    @RequestWrapper(localName = "subscribe", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.Subscribe")
+    @ResponseWrapper(localName = "subscribeResponse", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.SubscribeResponse")
+    public boolean subscribe(
+        @WebParam(name = "email", targetNamespace = "")
+        String email,
+        @WebParam(name = "clientName", targetNamespace = "")
+        String clientName,
+        @WebParam(name = "favoriteBrand", targetNamespace = "")
+        String favoriteBrand,
+        @WebParam(name = "minimumPrice", targetNamespace = "")
+        double minimumPrice,
+        @WebParam(name = "maximumPrice", targetNamespace = "")
+        double maximumPrice);
 
     /**
      * 
-     * @param arg0
-     * @return
-     *     returns java.util.List<is.project3.subscriptions.wsimport.Subscription>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listSubscriptions", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.ListSubscriptions")
-    @ResponseWrapper(localName = "listSubscriptionsResponse", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.ListSubscriptionsResponse")
-    public List<Subscription> listSubscriptions(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
+     * @param email
      * @return
      *     returns boolean
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "addSubscription", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.AddSubscription")
-    @ResponseWrapper(localName = "addSubscriptionResponse", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.AddSubscriptionResponse")
-    public boolean addSubscription(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Subscription arg0);
+    @RequestWrapper(localName = "unsubscribe", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.Unsubscribe")
+    @ResponseWrapper(localName = "unsubscribeResponse", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.UnsubscribeResponse")
+    public boolean unsubscribe(
+        @WebParam(name = "email", targetNamespace = "")
+        String email);
 
 }

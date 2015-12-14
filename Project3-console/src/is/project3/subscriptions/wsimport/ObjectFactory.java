@@ -24,12 +24,10 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _ListSubscriptionsResponse_QNAME = new QName("http://subscriptions.project3.is/", "listSubscriptionsResponse");
-    private final static QName _ListSubscriptions_QNAME = new QName("http://subscriptions.project3.is/", "listSubscriptions");
-    private final static QName _AddSubscription_QNAME = new QName("http://subscriptions.project3.is/", "addSubscription");
-    private final static QName _RemoveSubscription_QNAME = new QName("http://subscriptions.project3.is/", "removeSubscription");
-    private final static QName _RemoveSubscriptionResponse_QNAME = new QName("http://subscriptions.project3.is/", "removeSubscriptionResponse");
-    private final static QName _AddSubscriptionResponse_QNAME = new QName("http://subscriptions.project3.is/", "addSubscriptionResponse");
+    private final static QName _UnsubscribeResponse_QNAME = new QName("http://subscriptions.project3.is/", "unsubscribeResponse");
+    private final static QName _Subscribe_QNAME = new QName("http://subscriptions.project3.is/", "subscribe");
+    private final static QName _Unsubscribe_QNAME = new QName("http://subscriptions.project3.is/", "unsubscribe");
+    private final static QName _SubscribeResponse_QNAME = new QName("http://subscriptions.project3.is/", "subscribeResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: is.project3.subscriptions.wsimport
@@ -39,113 +37,71 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RemoveSubscriptionResponse }
+     * Create an instance of {@link Subscribe }
      * 
      */
-    public RemoveSubscriptionResponse createRemoveSubscriptionResponse() {
-        return new RemoveSubscriptionResponse();
+    public Subscribe createSubscribe() {
+        return new Subscribe();
     }
 
     /**
-     * Create an instance of {@link AddSubscriptionResponse }
+     * Create an instance of {@link Unsubscribe }
      * 
      */
-    public AddSubscriptionResponse createAddSubscriptionResponse() {
-        return new AddSubscriptionResponse();
+    public Unsubscribe createUnsubscribe() {
+        return new Unsubscribe();
     }
 
     /**
-     * Create an instance of {@link RemoveSubscription }
+     * Create an instance of {@link SubscribeResponse }
      * 
      */
-    public RemoveSubscription createRemoveSubscription() {
-        return new RemoveSubscription();
+    public SubscribeResponse createSubscribeResponse() {
+        return new SubscribeResponse();
     }
 
     /**
-     * Create an instance of {@link AddSubscription }
+     * Create an instance of {@link UnsubscribeResponse }
      * 
      */
-    public AddSubscription createAddSubscription() {
-        return new AddSubscription();
+    public UnsubscribeResponse createUnsubscribeResponse() {
+        return new UnsubscribeResponse();
     }
 
     /**
-     * Create an instance of {@link ListSubscriptions }
+     * Create an instance of {@link JAXBElement }{@code <}{@link UnsubscribeResponse }{@code >}}
      * 
      */
-    public ListSubscriptions createListSubscriptions() {
-        return new ListSubscriptions();
+    @XmlElementDecl(namespace = "http://subscriptions.project3.is/", name = "unsubscribeResponse")
+    public JAXBElement<UnsubscribeResponse> createUnsubscribeResponse(UnsubscribeResponse value) {
+        return new JAXBElement<UnsubscribeResponse>(_UnsubscribeResponse_QNAME, UnsubscribeResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link ListSubscriptionsResponse }
+     * Create an instance of {@link JAXBElement }{@code <}{@link Subscribe }{@code >}}
      * 
      */
-    public ListSubscriptionsResponse createListSubscriptionsResponse() {
-        return new ListSubscriptionsResponse();
+    @XmlElementDecl(namespace = "http://subscriptions.project3.is/", name = "subscribe")
+    public JAXBElement<Subscribe> createSubscribe(Subscribe value) {
+        return new JAXBElement<Subscribe>(_Subscribe_QNAME, Subscribe.class, null, value);
     }
 
     /**
-     * Create an instance of {@link Subscription }
+     * Create an instance of {@link JAXBElement }{@code <}{@link Unsubscribe }{@code >}}
      * 
      */
-    public Subscription createSubscription() {
-        return new Subscription();
+    @XmlElementDecl(namespace = "http://subscriptions.project3.is/", name = "unsubscribe")
+    public JAXBElement<Unsubscribe> createUnsubscribe(Unsubscribe value) {
+        return new JAXBElement<Unsubscribe>(_Unsubscribe_QNAME, Unsubscribe.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ListSubscriptionsResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SubscribeResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://subscriptions.project3.is/", name = "listSubscriptionsResponse")
-    public JAXBElement<ListSubscriptionsResponse> createListSubscriptionsResponse(ListSubscriptionsResponse value) {
-        return new JAXBElement<ListSubscriptionsResponse>(_ListSubscriptionsResponse_QNAME, ListSubscriptionsResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ListSubscriptions }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://subscriptions.project3.is/", name = "listSubscriptions")
-    public JAXBElement<ListSubscriptions> createListSubscriptions(ListSubscriptions value) {
-        return new JAXBElement<ListSubscriptions>(_ListSubscriptions_QNAME, ListSubscriptions.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AddSubscription }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://subscriptions.project3.is/", name = "addSubscription")
-    public JAXBElement<AddSubscription> createAddSubscription(AddSubscription value) {
-        return new JAXBElement<AddSubscription>(_AddSubscription_QNAME, AddSubscription.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RemoveSubscription }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://subscriptions.project3.is/", name = "removeSubscription")
-    public JAXBElement<RemoveSubscription> createRemoveSubscription(RemoveSubscription value) {
-        return new JAXBElement<RemoveSubscription>(_RemoveSubscription_QNAME, RemoveSubscription.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RemoveSubscriptionResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://subscriptions.project3.is/", name = "removeSubscriptionResponse")
-    public JAXBElement<RemoveSubscriptionResponse> createRemoveSubscriptionResponse(RemoveSubscriptionResponse value) {
-        return new JAXBElement<RemoveSubscriptionResponse>(_RemoveSubscriptionResponse_QNAME, RemoveSubscriptionResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AddSubscriptionResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://subscriptions.project3.is/", name = "addSubscriptionResponse")
-    public JAXBElement<AddSubscriptionResponse> createAddSubscriptionResponse(AddSubscriptionResponse value) {
-        return new JAXBElement<AddSubscriptionResponse>(_AddSubscriptionResponse_QNAME, AddSubscriptionResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://subscriptions.project3.is/", name = "subscribeResponse")
+    public JAXBElement<SubscribeResponse> createSubscribeResponse(SubscribeResponse value) {
+        return new JAXBElement<SubscribeResponse>(_SubscribeResponse_QNAME, SubscribeResponse.class, null, value);
     }
 
 }

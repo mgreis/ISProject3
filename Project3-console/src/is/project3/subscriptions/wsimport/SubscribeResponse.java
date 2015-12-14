@@ -8,12 +8,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for addSubscriptionResponse complex type.
+ * <p>Java class for subscribeResponse complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="addSubscriptionResponse">
+ * &lt;complexType name="subscribeResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -27,10 +27,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "addSubscriptionResponse", propOrder = {
+@XmlType(name = "subscribeResponse", propOrder = {
     "_return"
 })
-public class AddSubscriptionResponse {
+public class SubscribeResponse {
 
     @XmlElement(name = "return")
     protected boolean _return;

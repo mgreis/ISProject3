@@ -1,25 +1,31 @@
 package is.project3.subscriptions;
 
+import javax.jws.WebParam;
 import javax.jws.WebService;
 
 @WebService
 public interface SubscriptionService {
 
 	/**
-	 * List all the subscriptions of a specific email.
+	 * Create or replace a smartphone subscription.
 	 * 
-	 * @return List of subscriptions.
+	 * @param email
+	 *            Email of the subscription.
+	 * @param clientName
+	 *            Client name.
+	 * @param favoriteBrand
+	 *            Favorite smartphone brand.
+	 * @param minimumPrice
+	 *            Minimum price.
+	 * @param maximumPrice
+	 *            Maximum price.
+	 * @return true if a subscription was created.
 	 */
-	public Subscription[] listSubscriptions(String email);
-
-	/**
-	 * Add subscription.
-	 * 
-	 * @param subscription
-	 *            Subscription data.
-	 * @return true if it was successful.
-	 */
-	public boolean addSubscription(Subscription subscription);
+	public boolean subscribe(@WebParam(name = "email") String email,
+			@WebParam(name = "clientName") String clientName,
+			@WebParam(name = "favoriteBrand") String favoriteBrand,
+			@WebParam(name = "minimumPrice") double minimumPrice,
+			@WebParam(name = "maximumPrice") double maximumPrice);
 
 	/**
 	 * Remove subscription.
@@ -28,6 +34,6 @@ public interface SubscriptionService {
 	 *            Subscription data.
 	 * @return true if it was successful.
 	 */
-	public boolean removeSubscription(Subscription subscription);
+	public boolean unsubscribe(@WebParam(name = "email") String email);
 
 }

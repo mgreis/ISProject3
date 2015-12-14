@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "SubscriptionServiceService", targetNamespace = "http://subscriptions.project3.is/", wsdlLocation = "http://localhost:8081/soap/subscriptions?wsdl")
+@WebServiceClient(name = "SubscriptionServiceService", targetNamespace = "http://subscriptions.project3.is/", wsdlLocation = "http://localhost:8081/subscription_service?wsdl")
 public class SubscriptionServiceService
     extends Service
 {
@@ -30,7 +30,7 @@ public class SubscriptionServiceService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:8081/soap/subscriptions?wsdl");
+            url = new URL("http://localhost:8081/subscription_service?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
