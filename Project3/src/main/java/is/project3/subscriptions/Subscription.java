@@ -9,6 +9,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -28,24 +29,35 @@ public class Subscription implements Serializable {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "id")
 	private BigInteger id;
 
 	@Basic
+	@Column(name = "email", unique = true)
 	private String email;
 
 	@Basic
+	@Column(name = "clientName")
 	private String clientName;
 
 	@Basic
+	@Column(name = "channel")
+	private String channel;
+
+	@Basic
+	@Column(name = "favoriteBrand")
 	private String favoriteBrand;
 
 	@Basic
+	@Column(name = "minimumPrice")
 	private double minimumPrice;
 
 	@Basic
+	@Column(name = "maximumPrice")
 	private double maximumPrice;
 
 	@Basic
+	@Column(name = "validated")
 	private boolean validated;
 
 	public BigInteger getId() {
@@ -70,6 +82,14 @@ public class Subscription implements Serializable {
 
 	public void setClientName(String clientName) {
 		this.clientName = clientName;
+	}
+
+	public String getChannel() {
+		return channel;
+	}
+
+	public void setChannel(String channel) {
+		this.channel = channel;
 	}
 
 	public String getFavoriteBrand() {

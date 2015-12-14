@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS `subscription` (
 	`id` bigint(20) NOT NULL AUTO_INCREMENT,
 	`email` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
 	`clientName` varchar(255) NOT NULL,
+	`channel` varchar(255) NOT NULL,
 	`favoriteBrand` varchar(255) NOT NULL,
 	`minimumPrice` double NOT NULL,
 	`maximumPrice` double NOT NULL,
