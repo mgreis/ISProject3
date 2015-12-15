@@ -1,7 +1,6 @@
 package exec;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -28,6 +27,7 @@ public class Client {
 			System.out.println("Error reading file.");
 			e.printStackTrace();
 		}
-		return new String(encoded, StandardCharsets.UTF_8);
+		String aux = new String(encoded);
+		return aux;
 	}
 }

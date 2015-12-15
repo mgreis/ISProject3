@@ -17,7 +17,7 @@ public class FilterScreenSize implements Callable {
 		//get the smartphones that have no reference to screensize of a screen shorter then 10cm
 		ArrayList <Smartphone>auxList =new ArrayList<>();
 		for (Smartphone s : report.getSmartphone()) {
-			if (s.getDescription()!=null&&s.getDescription().size()>2) {
+			if (s.getDescription()!=null&&s.getDescription().size()>3) {
 				String [] aux =s.getDescription().get(2).getValue().split("\"");
 				aux[0].replace(",", ".");
 				double size;
