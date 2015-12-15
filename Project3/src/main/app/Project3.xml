@@ -202,7 +202,7 @@ output.payload = Subscription | null">
 	<flow name="Common-LoadSmartphones">
 		<component class="is.project3.smartphones.tools.Validator"
 			doc:name="Validator" />
-        <file:outbound-endpoint path="C:\Users\M&#225;rio\Desktop\DEI\IS\IS-Project3\project3\nonValidateFile" outputPattern="error.xml" connector-ref="File" responseTimeout="10000" doc:name="File"/>
+
 		<choice tracking:enable-default-events="true" doc:name="Choice">
 			<when expression="#[payload==null]">
 				<set-payload value="Error!" doc:name="Set Payload" />

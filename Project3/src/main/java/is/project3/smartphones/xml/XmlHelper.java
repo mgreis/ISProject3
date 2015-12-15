@@ -97,7 +97,7 @@ public class XmlHelper {
      */
     public static void validate(Source xmlSource) throws SAXException, IOException {
         assert (xmlSource != null);
-        final StreamSource schemaSource = new StreamSource(XmlHelper.class.getResourceAsStream("/is/project1/xml/schema.xsd"));
+        final StreamSource schemaSource = new StreamSource(XmlHelper.class.getResourceAsStream("/is/project3/smartphones/xml/schema.xsd"));
         SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI)
                 .newSchema(schemaSource)
                 .newValidator()
