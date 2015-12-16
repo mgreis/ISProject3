@@ -383,7 +383,7 @@ output.payload = String">
                         <db:parameterized-query><![CDATA[SELECT * FROM SMARTPHONE where SMARTPHONE.TITLE LIKE '%#[payload.favoriteBrand]%' AND SMARTPHONE.PRICE >= #[payload.minimumPrice]  AND SMARTPHONE.PRICE <= #[payload.maximumPrice];]]></db:parameterized-query>
                     </db:select>
                     <object-to-string-transformer doc:name="Object to String"/>
-                    <smtp:outbound-endpoint host="smtp.gmail.com" port="587" user="integracaosistemas15" password="sistemas15" connector-ref="Gmail" to="#[email]" from="integracaosistemas2015@gmail.com" subject="Your digest for the day" responseTimeout="10000" doc:name="SMTP"/>
+
                 </foreach>
             </otherwise>
         </choice>
