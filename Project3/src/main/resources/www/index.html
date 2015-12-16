@@ -35,7 +35,21 @@
 			<div>
 				<label for="email">Email</label> <input name="email" type="email" />
 			</div>
+			<div>
+				<label for="uuid">UUID</label> <input name="uuid" type="text" />
+			</div>
 			<input type="Submit" />
+		</fieldset>
+	</form>
+	<form action="email_subscriptions" method="post" accept-charset="UTF-8"
+		enctype="application/x-www-form-urlencoded">
+		<fieldset>
+			<legend>Email subscriptions:</legend>
+			<div>
+				<label for="email">Email</label> <input name="email" type="email" />
+			</div>
+			<input type="Submit" />
+			If the email has subscriptions it will receive a mail with the list.
 		</fieldset>
 	</form>
 </body>

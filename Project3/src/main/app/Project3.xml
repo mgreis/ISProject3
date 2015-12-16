@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
-	xmlns:validation="http://www.mulesoft.org/schema/mule/validation"
+<mule xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
+	xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns:validation="http://www.mulesoft.org/schema/mule/validation"
 	xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata"
 	xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:smtps="http://www.mulesoft.org/schema/mule/smtps"
 	xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:db="http://www.mulesoft.org/schema/mule/db"
@@ -19,7 +19,8 @@ http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/cu
 http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
 http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
 http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mule/validation/current/mule-validation.xsd
-http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd">
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd">
 	<http:listener-config name="HTTP_Listener_Configuration"
 		host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration">
 		<http:worker-threading-profile
@@ -35,9 +36,9 @@ http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/cu
 		<smtps:tls-trust-store path="truststore.jks"
 			storePassword="123456" />
 	</smtps:connector>
-	<flow name="HTTP-CreateDatabase" initialState="stopped">
+	<flow name="HTTP-CreateDatabase" initialState="started">
 		<http:listener config-ref="HTTP_Listener_Configuration"
-			path="create_database" doc:name="create_database" />
+			path="create_database" doc:name="GET create_database" allowedMethods="GET" />
 		<db:bulk-execute config-ref="MySQL_Configuration"
 			doc:name="Create database" file="src/main/resources/create_database.sql"></db:bulk-execute>
 		<set-payload value="Database created." doc:name="Database created."
@@ -46,147 +47,261 @@ http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/cu
 	<flow name="HTTP-Subscribe" initialState="started">
 		<http:listener config-ref="HTTP_Listener_Configuration"
 			path="subscribe" doc:name="POST subscribe" allowedMethods="POST" />
-		<set-payload
-			value="#[[ 'channel' : 'Web', 'email' : payload.email , 'clientName' : payload.clientName , 'favoriteBrand' : payload.favoriteBrand , 'minimumPrice' : payload.minimumPrice , 'maximumPrice' : payload.maximumPrice ]]"
-			doc:name="subscription" />
+		<flow-ref name="Get-HTTP-Params" doc:name="Get-HTTP-Params" />
+		<expression-component doc:name="payload.channel = 'Web'"><![CDATA[payload.channel = 'Web']]></expression-component>
 		<flow-ref name="Subscribe" doc:name="Subscribe" />
 		<set-payload
-			value="A mail was sent, click the confirmation link to start receiving smartphone updates."
+			value="A mail was sent with an activation link to start receiving smartphone updates."
 			encoding="UTF-8" mimeType="text/plain"
-			doc:name="A mail was sent, click the confirmation link to start receiving smartphone updates." />
+			doc:name="A mail was sent with an activation link to start receiving smartphone updates." />
 	</flow>
 	<flow name="HTTP-Unsubcribe" initialState="started">
 		<http:listener config-ref="HTTP_Listener_Configuration"
-			path="unsubscribe" allowedMethods="POST" doc:name="POST unsubscribe" />
-		<set-payload value="#[message.inboundProperties.'http.query.params'.email]"
-			doc:name="email" />
+			path="unsubscribe" allowedMethods="GET,POST" doc:name="GET|POST unsubscribe" />
+		<flow-ref name="Get-HTTP-Params" doc:name="Get-HTTP-Params" />
 		<flow-ref name="Unsubscribe" doc:name="Unsubscribe" />
-		<set-payload value="The email will not receive smartphone updates."
-			encoding="UTF-8" mimeType="text/plain"
-			doc:name="The email will not receive smartphone updates." />
-	</flow>
-	<flow name="HTTP-ConfirmSubscription" initialState="started">
-		<http:listener config-ref="HTTP_Listener_Configuration"
-			path="confirm_subscription" doc:name="confirm_subscription" />
-		<set-payload value="#[message.inboundProperties.'http.query.params'.email]"
-			doc:name="email" />
-		<flow-ref name="Get-Subscription" doc:name="Get-Subscription" />
-		<choice doc:name="Choice">
+		<choice doc:name="(payload) null? false?">
 			<when expression="#[payload == null]">
-				<set-payload value="Subscription not found." encoding="UTF-8"
-					mimeType="text/plain" doc:name="Subscription not found." />
+				<set-payload value="The subscription was deleted."
+					encoding="UTF-8" mimeType="text/plain" doc:name="The subscription was deleted." />
 			</when>
-			<when
-				expression="#[payload != null &amp;&amp; payload.hash() != message.inboundProperties.'http.query.params'.hash]">
-				<set-payload value="Invalid hash." encoding="UTF-8"
-					mimeType="text/plain" doc:name="Invalid hash." />
+			<when expression="#[payload == false]">
+				<set-payload value="The subscription does not exist."
+					encoding="UTF-8" mimeType="text/plain" doc:name="The subscription does not exist." />
 			</when>
 			<otherwise>
-				<flow-ref name="Validate-Subscription" doc:name="Validate-Subscription" />
+				<scripting:component
+					doc:name="throw new RuntimeException(&quot;The subscription still exists.&quot;)">
+					<scripting:script engine="Groovy"><![CDATA[throw new RuntimeException("The subscription still exists.")]]></scripting:script>
+				</scripting:component>
+			</otherwise>
+		</choice>
+	</flow>
+	<flow name="HTTP-EmailSubscriptions" initialState="started">
+		<http:listener config-ref="HTTP_Listener_Configuration"
+			path="email_subscriptions" allowedMethods="POST" doc:name="POST email_subscriptions" />
+		<flow-ref name="Get-HTTP-Params" doc:name="Get-HTTP-Params" />
+		<set-variable variableName="email" value="#[payload.email]"
+			doc:name="email = payload.email" />
+		<set-payload value="#[email]" doc:name="email" />
+		<flow-ref name="Email-Subscriptions" doc:name="Email-Subscriptions" />
+		<set-payload
+			value="A mail was sent to #[email] only if the email had subscriptions. No futher feedback is given here to protect the subscriber's privacy."
+			doc:name="A mail was sent to #[email] only if the email had subscriptions. No futher feedback is given here to protect the subscriber's privacy." />
+	</flow>
+	<flow name="HTTP-ActivateSubscription" initialState="started">
+		<http:listener config-ref="HTTP_Listener_Configuration"
+			path="activate_subscription" allowedMethods="GET"
+			doc:name="GET activate_subscription" />
+		<flow-ref name="Get-HTTP-Params" doc:name="Get-HTTP-Params" />
+		<flow-ref name="Activate-Subscription" doc:name="Activate-Subscription" />
+		<choice doc:name="payload != null?">
+			<when expression="#[payload != null]">
 				<set-payload
-					value="Subscription validated, email will start receiving smartphone updates."
+					value="Subscription activated, email will start receiving smartphones that match the subscription."
 					encoding="UTF-8" mimeType="text/plain"
-					doc:name="Subscription validated, email will start receiving smartphone updates." />
+					doc:name="Subscription activated, email will start receiving smartphones that match the subscription." />
+			</when>
+			<otherwise>
+				<set-payload value="Subscription not found." encoding="UTF-8"
+					mimeType="text/plain" doc:name="Subscription not found." />
 			</otherwise>
 		</choice>
 	</flow>
 	<flow name="HTTP-*" initialState="started">
 		<http:listener config-ref="HTTP_Listener_Configuration"
-			path="*" doc:name="*" />
+			path="*" allowedMethods="GET" doc:name="GET *" />
 		<http:static-resource-handler
 			resourceBase="src/main/resources/www" defaultFile="index.html"
 			doc:name="src/main/resources/www" />
 	</flow>
 	<flow name="SOAP-SubscriptionService" initialState="started">
 		<http:listener config-ref="HTTP_Listener_Configuration"
-			path="subscription_service" doc:name="subscription_service" />
+			path="subscription_service" doc:name="SOAP subscription_service" />
 		<cxf:jaxws-service serviceClass="is.project3.subscriptions.SubscriptionService"
-			doc:name="Subscription Service" />
-		<choice doc:name="operation">
+			validationEnabled="true" doc:name="Subscription Service" />
+		<choice doc:name="(cxf_operation) subscribe? unsubscribe? email_subscriptions?">
 			<when
-				expression="#[javax.xml.namespace.QName.valueOf(&quot;{http://subscriptions.project3.is/}unsubscribe&quot;).equals(flowVars['cxf_operation'])]">
-				<set-payload value="#[payload]" doc:name="email" />
-				<flow-ref name="Unsubscribe" doc:name="Unsubscribe" />
-				<set-payload value="#[payload == null]" doc:name="Return boolean" />
-			</when>
-			<when
-				expression="#[javax.xml.namespace.QName.valueOf(&quot;{http://subscriptions.project3.is/}subscribe&quot;).equals(flowVars['cxf_operation'])]">
+				expression="#[javax.xml.namespace.QName.valueOf(&quot;{http://subscriptions.project3.is/}subscribe&quot;).equals(cxf_operation)]">
 				<set-payload
 					value="#[[ 'channel' : 'SOAP' , 'email' : payload[0] , 'clientName' : payload[1] , 'favoriteBrand' : payload[2] , 'minimumPrice' : payload[3] , 'maximumPrice' : payload[4] ]]"
-					doc:name="subscription" />
+					doc:name="Map (channel = 'SOAP', email, clientName, favoriteBrand, minimumPrice, maximumPrice)" />
 				<flow-ref name="Subscribe" doc:name="Subscribe" />
-				<set-payload value="#[payload != null]" doc:name="Return boolean" />
+				<set-payload value="#[payload != null]" doc:name="payload != null" />
+			</when>
+			<when
+				expression="#[javax.xml.namespace.QName.valueOf(&quot;{http://subscriptions.project3.is/}unsubscribe&quot;).equals(cxf_operation)]">
+				<set-payload value="#[[ 'email' : payload[0] , 'uuid' : payload[1] ]]"
+					doc:name="Map (email, uuid)" />
+				<flow-ref name="Unsubscribe" doc:name="Unsubscribe" />
+				<choice doc:name="(payload) null? false?">
+					<when expression="#[payload == null]">
+						<set-payload value="#[true]" doc:name="true" />
+					</when>
+					<when expression="#[payload == false]">
+						<scripting:component
+							doc:name="throw new RuntimeException(&quot;Subscription not found.&quot;)">
+							<scripting:script engine="Groovy"><![CDATA[throw new RuntimeException("Subscription not found.")]]></scripting:script>
+						</scripting:component>
+					</when>
+					<otherwise>
+						<set-payload value="#[false]" doc:name="false" />
+					</otherwise>
+				</choice>
+			</when>
+			<when
+				expression="#[javax.xml.namespace.QName.valueOf(&quot;{http://subscriptions.project3.is/}emailSubscriptions&quot;).equals(cxf_operation)]">
+				<set-payload value="#[payload]" doc:name="email" />
+				<flow-ref name="Email-Subscriptions" doc:name="Email-Subscriptions" />
 			</when>
 			<otherwise>
-				<set-payload value="#[null]" doc:name="null" />
+				<scripting:component
+					doc:name="throw new UnsupportedOperationException(&quot;\&quot;&quot;+cxf_operation.toString()+&quot;\&quot;&quot;)">
+					<scripting:script engine="Groovy"><![CDATA[throw new UnsupportedOperationException("\""+cxf_operation.toString()+"\"")]]></scripting:script>
+				</scripting:component>
 			</otherwise>
 		</choice>
 	</flow>
 	<sub-flow name="Subscribe"
-		doc:description="input.payload = Map | Subscription
+		doc:description="input.payload = Map|Subscription (email, clientName, channel, favoriteBrand, minimumPrice, maximumPrice)
 output.payload = Subscription">
 		<set-variable variableName="subscription" value="#[payload]"
-			doc:name="subscription" doc:description="Expects is.project3.subscriptions.Subscription" />
+			doc:name="subscription = payload" doc:description="Expects is.project3.subscriptions.Subscription" />
+		<db:select config-ref="MySQL_Configuration" doc:name="Get uuids">
+			<db:parameterized-query><![CDATA[SELECT uuid from subscription]]></db:parameterized-query>
+		</db:select>
+		<scripting:transformer returnClass="java.lang.String"
+			doc:name="New Unique UUID">
+			<scripting:script engine="Groovy"><![CDATA[def uuid = null;
+def unique = false;
+while (!unique) {
+	uuid = org.mule.util.UUID.getUUID();
+	unique = true;
+	payload.each {
+		if (it.uuid == uuid) {
+			unique = false;
+		}
+	}
+}
+payload = uuid;
+]]></scripting:script>
+		</scripting:transformer>
+		<expression-component doc:name="subscription.uuid = payload"><![CDATA[subscription.uuid = payload]]></expression-component>
 		<transactional action="ALWAYS_BEGIN" doc:name="Transactional">
-			<db:delete config-ref="MySQL_Configuration" doc:name="Delete subscription">
-				<db:parameterized-query><![CDATA[DELETE FROM subscription WHERE email = #[subscription.email]]]></db:parameterized-query>
-			</db:delete>
-			<db:insert config-ref="MySQL_Configuration"
-				autoGeneratedKeys="true" autoGeneratedKeysColumnNames="id"
-				doc:name="Insert subscription">
-				<db:parameterized-query><![CDATA[INSERT INTO subscription (email, clientName, channel, favoriteBrand, minimumPrice, maximumPrice, validated) VALUES (#[subscription.email], #[subscription.clientName], #[subscription.channel], #[subscription.favoriteBrand], #[subscription.minimumPrice], #[subscription.maximumPrice], 0)]]></db:parameterized-query>
+			<db:insert config-ref="MySQL_Configuration" doc:name="Insert subscription">
+				<db:parameterized-query><![CDATA[INSERT INTO subscription (email, clientName, channel, favoriteBrand, minimumPrice, maximumPrice, uuid) VALUES (#[subscription.email], #[subscription.clientName], #[subscription.channel], #[subscription.favoriteBrand], #[subscription.minimumPrice], #[subscription.maximumPrice], #[subscription.uuid])]]></db:parameterized-query>
 			</db:insert>
-			<set-payload value="#[subscription.email]" doc:name="subscription.email" />
+			<set-payload value="#[subscription.uuid]" doc:name="subscription.uuid" />
 			<flow-ref name="Get-Subscription" doc:name="Get-Subscription" />
-			<set-variable variableName="subscription" value="#[payload]"
-				doc:name="subscription" doc:description="Expects is.project3.subscriptions.Subscription" />
+			<flow-ref name="Describe-Subscription" doc:name="Describe-Subscription" />
 			<set-payload
-				value="#[['to' : payload.email , 'subject' : &quot;Confirm your subscription&quot; , 'content' : &quot;Email: &quot; + payload.email + &quot;\nFavorite Brand: &quot;+ payload.favoriteBrand + &quot;\nMinimum Price: &quot;+ payload.minimumPrice +&quot;\nMaximum price: &quot; + payload.maximumPrice + &quot;\n\nClick here to confirm your subscription: http://localhost:8081/confirm_subscription?email=&quot; + payload.email + &quot;&amp;hash=&quot; + payload.hash()]]"
-				doc:name="mail" />
+				value="#[['to' : subscription.email , 'subject' : &quot;Confirm your subscription&quot; , 'content' : &quot;Email: &quot; + subscription.email + &quot;\n&quot; + payload]]"
+				doc:name="Map (to, subject, content)" />
 			<flow-ref name="Send-Mail" doc:name="Send-Mail" />
 		</transactional>
 		<set-payload value="#[subscription]" doc:name="subscription" />
 	</sub-flow>
 	<sub-flow name="Unsubscribe"
+		doc:description="input.payload = Map|Subscription (email, uuid)
+output.payload = Subscription|null">
+		<set-variable variableName="subscription" value="#[payload]"
+			doc:name="subscription = payload" />
+		<set-payload value="#[subscription.uuid]" doc:name="subscription.uuid" />
+		<flow-ref name="Get-Subscription" doc:name="Get-Subscription" />
+		<choice doc:name="payload != null?">
+			<when expression="#[payload != null]">
+				<db:delete config-ref="MySQL_Configuration" doc:name="Delete subscription">
+					<db:parameterized-query><![CDATA[DELETE FROM subscription WHERE email = #[subscription.email] AND uuid = #[subscription.uuid]]]></db:parameterized-query>
+				</db:delete>
+				<set-payload value="#[subscription.uuid]" doc:name="subscription.uuid" />
+				<flow-ref name="Get-Subscription" doc:name="Get-Subscription" />
+			</when>
+			<otherwise>
+				<set-payload value="#[false]" doc:name="false" />
+			</otherwise>
+		</choice>
+	</sub-flow>
+	<sub-flow name="Get-HTTP-Params" doc:description="output.payload = Map">
+		<choice doc:name="http.method">
+			<when expression="#[message.inboundProperties.'http.method' == 'POST']">
+				<set-payload value="#[payload]" doc:name="[POST] Map (...)" />
+			</when>
+			<when expression="#[message.inboundProperties.'http.method' == 'GET']">
+				<set-payload value="#[message.inboundProperties.'http.query.params']"
+					doc:name="[GET] Map (...)" />
+			</when>
+			<otherwise>
+				<expression-component
+					doc:name="throw new UnsupportedOperationException(http.method)"><![CDATA[throw new UnsupportedOperationException(message.inboundProperties.'http.method')]]></expression-component>
+			</otherwise>
+		</choice>
+	</sub-flow>
+	<sub-flow name="Email-Subscriptions"
 		doc:description="input.payload = email
-output.payload = Subscription | null">
-		<set-variable variableName="email" value="#[payload]"
-			doc:name="email" />
-		<db:delete config-ref="MySQL_Configuration" doc:name="Delete subscription">
-			<db:parameterized-query><![CDATA[DELETE FROM subscription WHERE email = #[payload]]]></db:parameterized-query>
-		</db:delete>
-		<set-payload value="#[email]" doc:name="email" />
+output.payload = boolean">
+		<set-variable variableName="mail"
+			value="#[['to' : payload , 'subject' : &quot;Subscription list&quot; , 'content' : &quot;Email: &quot; + payload + &quot;\n&quot;]]"
+			doc:name="mail = Map (to, subject, content)" />
+		<db:select config-ref="MySQL_Configuration" doc:name="Get subscriptions">
+			<db:parameterized-query><![CDATA[SELECT * FROM subscription WHERE email = #[payload]]]></db:parameterized-query>
+		</db:select>
+		<choice doc:name="not empty?">
+			<when expression="#[!payload.isEmpty()]">
+				<foreach doc:name="For Each">
+					<flow-ref name="Describe-Subscription" doc:name="Describe-Subscription" />
+					<expression-component doc:name="Append to mail.content"><![CDATA[mail.content += "\n" + payload]]></expression-component>
+				</foreach>
+				<set-payload value="#[mail]" doc:name="mail" />
+				<flow-ref name="Send-Mail" doc:name="Send-Mail" />
+				<set-payload value="#[true]" doc:name="true" />
+			</when>
+			<otherwise>
+				<set-payload value="#[false]" doc:name="false" />
+			</otherwise>
+		</choice>
+	</sub-flow>
+	<sub-flow name="Activate-Subscription"
+		doc:description="input.payload = Map|Subscription (email, uuid)
+output.payload = Subscription|null">
+		<set-variable variableName="uuid" value="#[payload.uuid]"
+			doc:name="uuid = payload.uuid" />
+		<db:update config-ref="MySQL_Configuration" doc:name="Activate subscription">
+			<db:parameterized-query><![CDATA[UPDATE subscription SET active = 1 WHERE email = #[payload.email] AND uuid = #[payload.uuid]]]></db:parameterized-query>
+		</db:update>
+		<set-payload value="#[uuid]" doc:name="uuid" />
 		<flow-ref name="Get-Subscription" doc:name="Get-Subscription" />
 	</sub-flow>
 	<sub-flow name="Get-Subscription"
-		doc:description="input.payload = email
-output.payload = Subscription | null">
+		doc:description="input.payload = uuid
+output.payload = Subscription|null">
 		<db:select config-ref="MySQL_Configuration" doc:name="Get subscription">
-			<db:parameterized-query><![CDATA[SELECT * FROM subscription WHERE email = #[payload]]]></db:parameterized-query>
+			<db:parameterized-query><![CDATA[SELECT * FROM subscription WHERE uuid = #[payload]]]></db:parameterized-query>
 		</db:select>
-		<choice doc:name="Choice">
+		<choice doc:name="empty?">
 			<when expression="#[payload.isEmpty()]">
 				<set-payload value="#[null]" doc:name="null" />
 			</when>
 			<otherwise>
-				<set-payload value="#[payload[0]]" doc:name="subscription" />
-				<json:object-to-json-transformer
-					doc:name="Map to JSON" />
-				<json:json-to-object-transformer
-					returnClass="is.project3.subscriptions.Subscription" doc:name="JSON to Subscription" />
+				<set-payload value="#[payload[0]]" doc:name="payload[0]" />
 			</otherwise>
 		</choice>
 	</sub-flow>
-	<sub-flow name="Validate-Subscription" doc:description="payload = Subscription">
-		<set-variable variableName="subscription" value="#[payload]"
-			doc:name="subscription" />
-		<db:update config-ref="MySQL_Configuration" doc:name="Validate subscription">
-			<db:parameterized-query><![CDATA[UPDATE subscription SET validated = 1 WHERE id = #[payload.id]]]></db:parameterized-query>
-		</db:update>
-		<set-payload value="#[subscription.email]" doc:name="subscription.email" />
-		<flow-ref name="Get-Subscription" doc:name="Get-Subscription" />
+	<sub-flow name="Object-To-Subscription">
+		<json:object-to-json-transformer
+			doc:name="to JSON" />
+		<json:json-to-object-transformer
+			returnClass="is.project3.subscriptions.Subscription" doc:name="JSON to Subscription" />
 	</sub-flow>
-	<sub-flow name="Send-Mail" doc:description="Recebe as propriedades: to, cc, bcc, message">
+	<sub-flow name="Describe-Subscription"
+		doc:description="input.payload = Map|Subscription (email,favoriteBrand,minimumPrice,maximumPrice,uuid,active)
+output.payload = String">
+		<set-payload
+			value="Favorite Brand: #[payload.favoriteBrand]#[&quot;\n&quot;]Minimum Price: #[payload.minimumPrice]#[&quot;\n&quot;]Maximum Price: #[payload.maximumPrice]#[&quot;\n&quot;]Unsubscribe link: http://localhost:8081/unsubscribe?email=#[payload.email]&amp;uuid=#[payload.uuid]#[&quot;\n&quot; + (payload.active ? '' : &quot;Activate link: http://localhost:8081/activate_subscription?email=&quot; + payload.email + &quot;&amp;uuid=&quot; + payload.uuid + &quot;\n&quot;)]"
+			doc:name="Describe subscription" />
+	</sub-flow>
+
+	<sub-flow name="Send-Mail"
+		doc:description="input.payload = Map (to,bc,bcc,replyto,subject,content)">
 		<set-variable variableName="mail" value="#[payload]"
 			doc:name="mail" />
 		<set-payload value="#[mail.content]" doc:name="mail.content" />
@@ -194,7 +309,7 @@ output.payload = Subscription | null">
 			port="465" user="${smtp.user}" password="${smtp.password}" to="#[mail.to]"
 			subject="#[mail.subject]" responseTimeout="10000" doc:name="Send mail"
 			bcc="#[mail.bcc]" cc="#[mail.cc]" connector-ref="SMTP_Connector"
-			from="${smtp.user}@student.dei.uc.pt " replyTo="#[mail.replyto]" />
+			from="${smtp.from}" replyTo="#[mail.replyto]" />
 	</sub-flow>
 	<flow name="Common-LoadSmartphones">
 		<component class="is.project3.smartphones.tools.Validator"

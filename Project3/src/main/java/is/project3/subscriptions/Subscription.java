@@ -1,12 +1,8 @@
 package is.project3.subscriptions;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -14,7 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.xml.bind.DatatypeConverter;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Dados de uma subscrição.
@@ -33,7 +30,7 @@ public class Subscription implements Serializable {
 	private BigInteger id;
 
 	@Basic
-	@Column(name = "email", unique = true)
+	@Column(name = "email")
 	private String email;
 
 	@Basic
@@ -57,8 +54,42 @@ public class Subscription implements Serializable {
 	private double maximumPrice;
 
 	@Basic
-	@Column(name = "validated")
-	private boolean validated;
+	@Column(name = "uuid", columnDefinition = "varchar(255) CHARACTER SET latin1 NOT NULL", unique = true)
+	private String uuid;
+
+	@Basic
+	@Column(name = "active", columnDefinition = "tinyint(1) NOT NULL DEFAULT 0")
+	private boolean active;
+
+	@Column(name = "created", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP", insertable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created;
+
+	@Override
+	public String toString() {
+		final StringBuilder s = new StringBuilder();
+		s.append(super.toString());
+		s.append("{id=");
+		s.append(getId());
+		s.append(",email=");
+		s.append(getEmail());
+		s.append(",clientName=");
+		s.append(getClientName());
+		s.append(",favoriteBrand=");
+		s.append(getFavoriteBrand());
+		s.append(",minimumPrice=");
+		s.append(getMinimumPrice());
+		s.append(",maximumPrice=");
+		s.append(getMaximumPrice());
+		s.append(",created=");
+		s.append(getCreated());
+		s.append(",uuid=");
+		s.append(getUuid());
+		s.append(",active=");
+		s.append(isActive());
+		s.append("}");
+		return s.toString();
+	}
 
 	public BigInteger getId() {
 		return id;
@@ -116,58 +147,28 @@ public class Subscription implements Serializable {
 		this.maximumPrice = maximumPrice;
 	}
 
-	public boolean isValidated() {
-		return validated;
+	public String getUuid() {
+		return uuid;
 	}
 
-	public void setValidated(boolean validated) {
-		this.validated = validated;
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 
-	@Override
-	public String toString() {
-		final StringBuilder s = new StringBuilder();
-		s.append(super.toString());
-		s.append("{id=");
-		s.append(id);
-		s.append(",email=");
-		s.append(email);
-		s.append(",clientName=");
-		s.append(clientName);
-		s.append(",favoriteBrand=");
-		s.append(favoriteBrand);
-		s.append(",minimumPrice=");
-		s.append(minimumPrice);
-		s.append(",maximumPrice=");
-		s.append(maximumPrice);
-		s.append(",validated=");
-		s.append(validated);
-		s.append(",hash=");
-		try {
-			s.append(hash());
-		} catch (Exception ex) {
-			s.append(ex.toString());
-		}
-		s.append("}");
-		return s.toString();
+	public boolean isActive() {
+		return active;
 	}
 
-	/**
-	 * Generates a hash of this object.
-	 * 
-	 * @return Hash of the this object.
-	 * @throws NoSuchAlgorithmException
-	 *             if SHA-1 is not available.
-	 * @throws IOException
-	 *             if an IO error occurs.
-	 */
-	public String hash() throws NoSuchAlgorithmException, IOException {
-		final MessageDigest digest = MessageDigest.getInstance("SHA-1");
-		try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
-				ObjectOutputStream out = new ObjectOutputStream(bos)) {
-			out.writeObject(this);
-			final byte[] hash = digest.digest(bos.toByteArray());
-			return DatatypeConverter.printHexBinary(hash);
-		}
+	public void setActive(boolean active) {
+		this.active = active;
 	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
 }
