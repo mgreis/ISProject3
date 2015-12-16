@@ -17,13 +17,15 @@ CREATE TABLE IF NOT EXISTS `smartphone` (
 
 CREATE TABLE IF NOT EXISTS `subscription` (
 	`id` bigint(20) NOT NULL AUTO_INCREMENT,
-	`email` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+	`email` varchar(255),
 	`clientName` varchar(255) NOT NULL,
 	`channel` varchar(255) NOT NULL,
 	`favoriteBrand` varchar(255) NOT NULL,
 	`minimumPrice` double NOT NULL,
 	`maximumPrice` double NOT NULL,
-	`validated` tinyint(1) NOT NULL,
+	`created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`uuid` varchar(255) CHARACTER SET latin1 NOT NULL,
+	`active` tinyint(1) NOT NULL DEFAULT 0,
 	PRIMARY KEY (`id`),
-	UNIQUE KEY `email` (`email`)
+	UNIQUE KEY `u_uuid` (`uuid`)
 ) ENGINE=InnoDB ;

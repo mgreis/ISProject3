@@ -36,21 +36,32 @@ public class Client implements Runnable {
 			while (true) {
 				System.out.println("");
 				System.out.println("Commands:");
-				System.out.println(" subscribe");
-				System.out.println(" unsubscribe");
-				System.out.println(" exit");
+				System.out.println("1) subscribe");
+				System.out.println("2) unsubscribe");
+				System.out.println("3) email_subscriptions");
+				System.out.println("4) exit");
 				System.out.print("> ");
 				final String cmd = input.nextLine().trim();
 				try {
 					switch (cmd) {
+					case "1":
 					case "subscribe":
 						subscribe();
 						break;
+					case "2":
 					case "unsubscribe":
 						unsubscribe();
 						break;
+					case "3":
+					case "email_subscriptions":
+						emailSubscriptions();
+						break;
+					case "4":
 					case "exit":
 						return; // exit the application
+					default:
+						System.out.println("ERROR: Unknown command \""
+								+ String.valueOf(cmd) + "\".");
 					}
 				} catch (Exception ex) {
 					System.out.println("ERROR:" + ex.toString());
@@ -67,7 +78,7 @@ public class Client implements Runnable {
 		// input
 		System.out.print("Email : ");
 		final String email = input.nextLine().trim();
-		System.out.print("Favorite Band : ");
+		System.out.print("Favorite Brand : ");
 		final String favoriteBrand = input.nextLine().trim();
 		System.out.print("Minimum Price : ");
 		final double minimumPrice = Double.parseDouble(input.nextLine());
@@ -80,9 +91,9 @@ public class Client implements Runnable {
 		if (server.subscribe(email, CLIENT_NAME, favoriteBrand, minimumPrice,
 				maximumPrice)) {
 			System.out
-					.println("SUCCESS: A mail was sent, click the confirmation link to start receiving smartphone updates.");
+					.println("SUCCESS: A mail was sent with an activation link to start receiving smartphone updates.");
 		} else {
-			System.out.println("ERROR: Failed to add subscription.");
+			System.out.println("ERROR: Failed to subscribe.");
 		}
 	}
 
@@ -90,13 +101,23 @@ public class Client implements Runnable {
 		// input
 		System.out.print("Email : ");
 		final String email = input.nextLine().trim();
+		System.out.print("UUID : ");
+		final String uuid = input.nextLine().trim();
 		// unsubscribe
-		if (server.unsubscribe(email)) {
-			System.out
-					.println("SUCESS: The email will not receive smartphone updates.");
+		if (server.unsubscribe(email, uuid)) {
+			System.out.println("SUCESS: The subscription was deleted.");
 		} else {
-			System.out.println("ERROR: Failed to remove subscription.");
+			System.out.println("ERROR: Failed to unsubscribe.");
 		}
+	}
+
+	private void emailSubscriptions() {
+		// input
+		System.out.print("Email : ");
+		final String email = input.nextLine().trim();
+		// email subscriptions
+		server.emailSubscriptions(email);
+		System.out.println("SUCCESS: A mail was sent only if the email had subscriptions. No futher feedback is given here to protect the subscriber's privacy.");
 	}
 
 }

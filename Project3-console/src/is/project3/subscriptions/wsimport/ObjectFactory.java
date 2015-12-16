@@ -28,12 +28,30 @@ public class ObjectFactory {
     private final static QName _Subscribe_QNAME = new QName("http://subscriptions.project3.is/", "subscribe");
     private final static QName _Unsubscribe_QNAME = new QName("http://subscriptions.project3.is/", "unsubscribe");
     private final static QName _SubscribeResponse_QNAME = new QName("http://subscriptions.project3.is/", "subscribeResponse");
+    private final static QName _EmailSubscriptions_QNAME = new QName("http://subscriptions.project3.is/", "emailSubscriptions");
+    private final static QName _EmailSubscriptionsResponse_QNAME = new QName("http://subscriptions.project3.is/", "emailSubscriptionsResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: is.project3.subscriptions.wsimport
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link EmailSubscriptions }
+     * 
+     */
+    public EmailSubscriptions createEmailSubscriptions() {
+        return new EmailSubscriptions();
+    }
+
+    /**
+     * Create an instance of {@link EmailSubscriptionsResponse }
+     * 
+     */
+    public EmailSubscriptionsResponse createEmailSubscriptionsResponse() {
+        return new EmailSubscriptionsResponse();
     }
 
     /**
@@ -102,6 +120,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://subscriptions.project3.is/", name = "subscribeResponse")
     public JAXBElement<SubscribeResponse> createSubscribeResponse(SubscribeResponse value) {
         return new JAXBElement<SubscribeResponse>(_SubscribeResponse_QNAME, SubscribeResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EmailSubscriptions }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://subscriptions.project3.is/", name = "emailSubscriptions")
+    public JAXBElement<EmailSubscriptions> createEmailSubscriptions(EmailSubscriptions value) {
+        return new JAXBElement<EmailSubscriptions>(_EmailSubscriptions_QNAME, EmailSubscriptions.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EmailSubscriptionsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://subscriptions.project3.is/", name = "emailSubscriptionsResponse")
+    public JAXBElement<EmailSubscriptionsResponse> createEmailSubscriptionsResponse(EmailSubscriptionsResponse value) {
+        return new JAXBElement<EmailSubscriptionsResponse>(_EmailSubscriptionsResponse_QNAME, EmailSubscriptionsResponse.class, null, value);
     }
 
 }

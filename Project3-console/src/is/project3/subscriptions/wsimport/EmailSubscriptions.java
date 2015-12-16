@@ -8,17 +8,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for unsubscribe complex type.
+ * <p>Java class for emailSubscriptions complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="unsubscribe">
+ * &lt;complexType name="emailSubscriptions">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="uuid" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,16 +27,13 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "unsubscribe", propOrder = {
-    "email",
-    "uuid"
+@XmlType(name = "emailSubscriptions", propOrder = {
+    "email"
 })
-public class Unsubscribe {
+public class EmailSubscriptions {
 
     @XmlElement(required = true)
     protected String email;
-    @XmlElement(required = true)
-    protected String uuid;
 
     /**
      * Gets the value of the email property.
@@ -61,30 +57,6 @@ public class Unsubscribe {
      */
     public void setEmail(String value) {
         this.email = value;
-    }
-
-    /**
-     * Gets the value of the uuid property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getUuid() {
-        return uuid;
-    }
-
-    /**
-     * Sets the value of the uuid property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setUuid(String value) {
-        this.uuid = value;
     }
 
 }

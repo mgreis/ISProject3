@@ -3,6 +3,7 @@ package is.project3.subscriptions.wsimport;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -16,9 +17,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="clientName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="favoriteBrand" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="clientName" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="favoriteBrand" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="minimumPrice" type="{http://www.w3.org/2001/XMLSchema}double"/>
  *         &lt;element name="maximumPrice" type="{http://www.w3.org/2001/XMLSchema}double"/>
  *       &lt;/sequence>
@@ -39,8 +40,11 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Subscribe {
 
+    @XmlElement(required = true)
     protected String email;
+    @XmlElement(required = true)
     protected String clientName;
+    @XmlElement(required = true)
     protected String favoriteBrand;
     protected double minimumPrice;
     protected double maximumPrice;

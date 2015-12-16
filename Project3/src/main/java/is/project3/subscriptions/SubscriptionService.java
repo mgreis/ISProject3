@@ -2,6 +2,7 @@ package is.project3.subscriptions;
 
 import javax.jws.WebParam;
 import javax.jws.WebService;
+import javax.xml.bind.annotation.XmlElement;
 
 @WebService
 public interface SubscriptionService {
@@ -21,19 +22,31 @@ public interface SubscriptionService {
 	 *            Maximum price.
 	 * @return true if a subscription was created.
 	 */
-	public boolean subscribe(@WebParam(name = "email") String email,
-			@WebParam(name = "clientName") String clientName,
-			@WebParam(name = "favoriteBrand") String favoriteBrand,
-			@WebParam(name = "minimumPrice") double minimumPrice,
-			@WebParam(name = "maximumPrice") double maximumPrice);
+	public boolean subscribe(
+			@WebParam(name = "email") @XmlElement(required = true) String email,
+			@WebParam(name = "clientName") @XmlElement(required = true) String clientName,
+			@WebParam(name = "favoriteBrand") @XmlElement(required = true) String favoriteBrand,
+			@WebParam(name = "minimumPrice") @XmlElement(required = true) double minimumPrice,
+			@WebParam(name = "maximumPrice") @XmlElement(required = true) double maximumPrice);
 
 	/**
-	 * Remove subscription.
+	 * Delete a subscription.
 	 * 
-	 * @param subscription
-	 *            Subscription data.
-	 * @return true if it was successful.
+	 * @param uuid
+	 *            Unique subscription identifier.
+	 * @return true if the subscription was delete.
 	 */
-	public boolean unsubscribe(@WebParam(name = "email") String email);
+	public boolean unsubscribe(
+			@WebParam(name = "email") @XmlElement(required = true) String email,
+			@WebParam(name = "uuid") @XmlElement(required = true) String uuid);
+
+	/**
+	 * Send email with subscriptions.
+	 * 
+	 * @param email
+	 *            Email address.
+	 */
+	public void emailSubscriptions(
+			@WebParam(name = "email") @XmlElement(required = true) String email);
 
 }

@@ -51,6 +51,7 @@ public interface SubscriptionService {
 
     /**
      * 
+     * @param uuid
      * @param email
      * @return
      *     returns boolean
@@ -60,6 +61,19 @@ public interface SubscriptionService {
     @RequestWrapper(localName = "unsubscribe", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.Unsubscribe")
     @ResponseWrapper(localName = "unsubscribeResponse", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.UnsubscribeResponse")
     public boolean unsubscribe(
+        @WebParam(name = "email", targetNamespace = "")
+        String email,
+        @WebParam(name = "uuid", targetNamespace = "")
+        String uuid);
+
+    /**
+     * 
+     * @param email
+     */
+    @WebMethod
+    @RequestWrapper(localName = "emailSubscriptions", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.EmailSubscriptions")
+    @ResponseWrapper(localName = "emailSubscriptionsResponse", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.EmailSubscriptionsResponse")
+    public void emailSubscriptions(
         @WebParam(name = "email", targetNamespace = "")
         String email);
 
