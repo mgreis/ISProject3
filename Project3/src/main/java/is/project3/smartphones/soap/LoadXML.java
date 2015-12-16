@@ -1,6 +1,8 @@
 package is.project3.smartphones.soap;
 
 
+import java.io.UnsupportedEncodingException;
+
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
@@ -10,6 +12,7 @@ public class LoadXML {
 
 	@WebMethod
 	public String loadXML(String xml) {
+		
 		return xml;
 
 	}
