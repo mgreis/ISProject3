@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
+<mule xmlns:smtp="http://www.mulesoft.org/schema/mule/smtp" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
 	xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns:validation="http://www.mulesoft.org/schema/mule/validation"
 	xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata"
 	xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:smtps="http://www.mulesoft.org/schema/mule/smtps"
@@ -32,11 +32,12 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
 		port="3306" user="root" database="isproject3" doc:name="MySQL Configuration" />
 	<smtps:connector name="SMTP_Connector" fromAddress="${smtp.user}@student.dei.uc.pt"
 		validateConnections="true" doc:name="SMTP">
-		<smtps:tls-client path="keystore.jks" storePassword="123456" />
-		<smtps:tls-trust-store path="truststore.jks"
+		<smtps:tls-client path="C:\portable\keystore.jks" storePassword="123456" />
+		<smtps:tls-trust-store path="C:\portable\truststore.jks"
 			storePassword="123456" />
 	</smtps:connector>
     <file:connector name="File" autoDelete="true" streaming="true" validateConnections="true" doc:name="File"/>
+    <smtp:gmail-connector name="Gmail" validateConnections="true" doc:name="Gmail"/>
 	<flow name="HTTP-CreateDatabase" initialState="started">
 		<http:listener config-ref="HTTP_Listener_Configuration"
 			path="create_database" doc:name="GET create_database" allowedMethods="GET" />
@@ -311,29 +312,27 @@ output.payload = String">
 			subject="#[mail.subject]" responseTimeout="10000" doc:name="Send mail"
 			bcc="#[mail.bcc]" cc="#[mail.cc]" connector-ref="SMTP_Connector"
 			from="${smtp.from}" replyTo="#[mail.replyto]" />
+        <db:update config-ref="MySQL_Configuration" doc:name="Database">
+            <db:parameterized-query><![CDATA[UPDATE `statistics` SET NUMBEROF = NUMBEROF+1 WHERE `FIELD` = 'EMAIL']]></db:parameterized-query>
+        </db:update>
 	</sub-flow>
 	<flow name="Common-LoadSmartphones">
 		<component class="is.project3.smartphones.tools.Validator"
 			doc:name="Validator" />
-
-		<choice tracking:enable-default-events="true" doc:name="Choice">
-			<when expression="#[payload==null]">
-				<set-payload value="Error!" doc:name="Set Payload" />
-			</when>
-			<otherwise>
-				<mulexml:jaxb-xml-to-object-transformer
-					encoding="UTF-8" jaxbContext-ref="JAXB_Context" doc:name="XML to JAXB Object" />
+        <choice tracking:enable-default-events="true" doc:name="Choice">
+            <when expression="#[payload==null]">
+                <set-payload value="Error!" doc:name="Set Payload"/>
+            </when>
+            <otherwise>
+                <mulexml:jaxb-xml-to-object-transformer encoding="UTF-8" jaxbContext-ref="JAXB_Context" doc:name="XML to JAXB Object"/>
                 <component class="is.project3.smartphones.tools.FilterScreenSize" doc:name="POJO-Filter"/>
-
-				<set-session-variable variableName="timestamp"
-					value="#[payload.getTimestamp().longValue()]" doc:name="Timestamp" />
-				<set-session-variable variableName="version"
-					value="#[payload.getVersion().longValue()]" doc:name="Version" />
-				<set-session-variable variableName="crawler"
-					value="#[payload.getCrawler()]" doc:name="Crawler" />
+                <set-variable variableName="numberOfSmartphones" value="#[payload.getSmartphone().size()]" doc:name="NUMBER OF SMARTPHONES"/>
+                <set-session-variable variableName="timestamp" value="#[payload.getTimestamp().longValue()]" doc:name="Timestamp"/>
+                <set-session-variable variableName="version" value="#[payload.getVersion().longValue()]" doc:name="Version"/>
+                <set-session-variable variableName="crawler" value="#[payload.getCrawler()]" doc:name="Crawler"/>
                 <set-variable variableName="information" value="#[payload]" doc:name="Information"/>
                 <transactional action="ALWAYS_BEGIN" doc:name="Transactional">
-                    <db:delete config-ref="MySQL_Configuration" doc:name="Database">
+                    <db:delete config-ref="MySQL_Configuration" doc:name="DeleteFromDatabase">
                         <db:parameterized-query><![CDATA[DELETE FROM SMARTPHONE;]]></db:parameterized-query>
                     </db:delete>
                     <set-payload value="#[information]" doc:name="Set Payload"/>
@@ -343,10 +342,16 @@ output.payload = String">
                         </db:insert>
                     </foreach>
                 </transactional>
+                <db:update config-ref="MySQL_Configuration" doc:name="updateNumberOfSmartphones">
+                    <db:parameterized-query><![CDATA[UPDATE `statistics` SET NUMBEROF= #[numberOfSmartphones] WHERE `FIELD` = 'SMARTPHONES']]></db:parameterized-query>
+                </db:update>
+                <db:update config-ref="MySQL_Configuration" doc:name="Database">
+                    <db:parameterized-query><![CDATA[UPDATE `statistics` SET NUMBEROF = NUMBEROF+1 WHERE `FIELD` = 'UPDATES']]></db:parameterized-query>
+                </db:update>
                 <set-payload value="success!" doc:name="Set Payload"/>
+            </otherwise>
+        </choice>
 
-			</otherwise>
-		</choice>
 	</flow>
 	<flow name="Directory-LoadSmartphones">
 		<file:inbound-endpoint path="dropXMLdirectory"
@@ -378,11 +383,13 @@ output.payload = String">
             </when>
             <otherwise>
                 <foreach collection="#[payload]" doc:name="For Each">
-                    <set-variable variableName="email" value="#[payload.channel]" doc:name="Variable"/>
+                    <set-variable variableName="email" value="#[payload.email]" doc:name="Variable"/>
                     <db:select config-ref="MySQL_Configuration" doc:name="Database">
                         <db:parameterized-query><![CDATA[SELECT * FROM SMARTPHONE where SMARTPHONE.TITLE LIKE '%#[payload.favoriteBrand]%' AND SMARTPHONE.PRICE >= #[payload.minimumPrice]  AND SMARTPHONE.PRICE <= #[payload.maximumPrice];]]></db:parameterized-query>
                     </db:select>
                     <object-to-string-transformer doc:name="Object to String"/>
+                    <set-variable variableName="mail" value="#[['to' : email , 'subject' : &quot;Your daily Digest&quot; , 'content' : &quot;Email: &quot; + payload + &quot;\n&quot;]]" doc:name="Variable"/>
+                    <flow-ref name="Send-Mail" doc:name="Send-Mail"/>
 
                 </foreach>
             </otherwise>
