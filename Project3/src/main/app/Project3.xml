@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns:smtp="http://www.mulesoft.org/schema/mule/smtp" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
+<mule xmlns:twitter="http://www.mulesoft.org/schema/mule/twitter" xmlns:smtp="http://www.mulesoft.org/schema/mule/smtp" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
 	xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns:validation="http://www.mulesoft.org/schema/mule/validation"
 	xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata"
 	xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:smtps="http://www.mulesoft.org/schema/mule/smtps"
@@ -20,7 +20,8 @@ http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/fil
 http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
 http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mule/validation/current/mule-validation.xsd
 http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
-http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd">
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+http://www.mulesoft.org/schema/mule/twitter http://www.mulesoft.org/schema/mule/twitter/current/mule-twitter.xsd">
 	<http:listener-config name="HTTP_Listener_Configuration"
 		host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration">
 		<http:worker-threading-profile
@@ -38,6 +39,10 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
 	</smtps:connector>
     <file:connector name="File" autoDelete="true" streaming="true" validateConnections="true" doc:name="File"/>
     <smtp:gmail-connector name="Gmail" validateConnections="true" doc:name="Gmail"/>
+    <twitter:config name="Twitter" consumerKey="1kgBDNqQnq3kEipcmNbQTYTet" consumerSecret="5az6IMW547bjeDXECnIGMUjIXrJKSeujN8jxCfQMnbc31MGnSS" doc:name="Twitter" accessKey="2882476084-MyopmqT7GuMMPrQ4YIhSvm1tZc15bDJ2zvvy5ut" accessSecret="Po6aY8wE5SUzld1o8KZEdnjBEUOEJWQuSQc3O0jDb5SFI
+    "/>
+    <twitter:config name="Twitter1" accessKey="2882476084-MyopmqT7GuMMPrQ4YIhSvm1tZc15bDJ2zvvy5ut" accessSecret="Po6aY8wE5SUzld1o8KZEdnjBEUOEJWQuSQc3O0jDb5SFI" consumerKey="hSLwYPhuO75hJxeC81vMlPaYd" consumerSecret="YzU0z1xhMg5aaHEn8YdkD5YnrAoN5AfBFO2uSlrpJcyeAq4qdF" doc:name="Twitter"/>
+    <twitter:config name="Twitter__Configuration" accessKey="2882476084-MyopmqT7GuMMPrQ4YIhSvm1tZc15bDJ2zvvy5ut" accessSecret="Po6aY8wE5SUzld1o8KZEdnjBEUOEJWQuSQc3O0jDb5SFI" consumerKey="hSLwYPhuO75hJxeC81vMlPaYd" consumerSecret="YzU0z1xhMg5aaHEn8YdkD5YnrAoN5AfBFO2uSlrpJcyeAq4qdF" doc:name="Twitter: Configuration"/>
 	<flow name="HTTP-CreateDatabase" initialState="started">
 		<http:listener config-ref="HTTP_Listener_Configuration"
 			path="create_database" doc:name="GET create_database" allowedMethods="GET" />
@@ -315,6 +320,7 @@ output.payload = String">
         <db:update config-ref="MySQL_Configuration" doc:name="Database">
             <db:parameterized-query><![CDATA[UPDATE `statistics` SET NUMBEROF = NUMBEROF+1 WHERE `FIELD` = 'EMAIL']]></db:parameterized-query>
         </db:update>
+        <flow-ref name="twitter" doc:name="twitter"/>
 	</sub-flow>
 	<flow name="Common-LoadSmartphones">
 		<component class="is.project3.smartphones.tools.Validator"
@@ -345,9 +351,10 @@ output.payload = String">
                 <db:update config-ref="MySQL_Configuration" doc:name="updateNumberOfSmartphones">
                     <db:parameterized-query><![CDATA[UPDATE `statistics` SET NUMBEROF= #[numberOfSmartphones] WHERE `FIELD` = 'SMARTPHONES']]></db:parameterized-query>
                 </db:update>
-                <db:update config-ref="MySQL_Configuration" doc:name="Database">
+                <db:update config-ref="MySQL_Configuration" doc:name="updateUpdates">
                     <db:parameterized-query><![CDATA[UPDATE `statistics` SET NUMBEROF = NUMBEROF+1 WHERE `FIELD` = 'UPDATES']]></db:parameterized-query>
                 </db:update>
+                <flow-ref name="twitter" doc:name="twitter"/>
                 <set-payload value="success!" doc:name="Set Payload"/>
             </otherwise>
         </choice>
@@ -394,5 +401,15 @@ output.payload = String">
                 </foreach>
             </otherwise>
         </choice>
+    </flow>
+    <flow name="twitter">
+        <db:update config-ref="MySQL_Configuration" doc:name="Database">
+            <db:parameterized-query><![CDATA[UPDATE statistics SET NUMBEROF = NUMBEROF+1 WHERE `FIELD` = 'TWITTS']]></db:parameterized-query>
+        </db:update>
+        <db:select config-ref="MySQL_Configuration" doc:name="Database">
+            <db:parameterized-query><![CDATA[SELECT * FROM STATISTICS]]></db:parameterized-query>
+        </db:select>
+        <logger message="#[payload]" level="INFO" doc:name="Logger"/>
+        <twitter:update-status config-ref="Twitter__Configuration" status="#[&quot;Our system has been updated: \n&quot; + payload.get(0).FIELD+&quot;:&quot;+payload.get(0).NUMBEROF + &quot;\n&quot;+ payload.get(1).FIELD+&quot;:&quot;+payload.get(1).NUMBEROF + &quot;\n&quot;+ payload.get(2).FIELD+&quot;:&quot;+payload.get(2).NUMBEROF + &quot;\n&quot;+ payload.get(3).FIELD+&quot;:&quot;+payload.get(3).NUMBEROF + &quot;\n&quot;]" doc:name="Twitter"/>
     </flow>
 </mule>

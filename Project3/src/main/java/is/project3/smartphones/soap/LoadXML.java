@@ -1,7 +1,7 @@
 package is.project3.smartphones.soap;
 
 
-import java.io.UnsupportedEncodingException;
+
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
