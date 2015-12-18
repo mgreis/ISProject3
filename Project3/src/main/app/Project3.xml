@@ -403,15 +403,15 @@ output.payload = String">
                     <logger message="#[payload]" level="INFO" doc:name="Logger"/>
                     <set-variable variableName="email" value="#[payload.email]" doc:name="get Email"/>
                     <logger message="SELECT * FROM SMARTPHONE where SMARTPHONE.TITLE LIKE '%#[payload.favoriteBrand]%' AND SMARTPHONE.PRICE &gt;= #[payload.minimumPrice]  AND SMARTPHONE.PRICE &lt;= #[payload.maximumPrice]" level="INFO" doc:name="Logger"/>
-                    <set-variable variableName="query" value="SELECT * FROM SMARTPHONE where SMARTPHONE.TITLE LIKE '%#[payload.favoriteBrand]%' AND SMARTPHONE.PRICE &gt;= #[payload.minimumPrice]  AND SMARTPHONE.PRICE &lt;= #[payload.maximumPrice]" doc:name="Variable"/>
+                    <set-variable variableName="query" value="SELECT * FROM SMARTPHONE where SMARTPHONE.TITLE LIKE '%#[payload.favoriteBrand]%' AND SMARTPHONE.PRICE &gt;= #[payload.minimumPrice]  AND SMARTPHONE.PRICE &lt;= #[payload.maximumPrice]" doc:name="build Query"/>
                     <db:select config-ref="MySQL_Configuration" doc:name="Select Smartphones that satisfy subscription">
                         <db:dynamic-query><![CDATA[#[query]]]></db:dynamic-query>
 
                     </db:select>
                     <logger message="#[payload.size()]" level="INFO" doc:name="Logger"/>
-                    <set-variable variableName="emailMessage" value="" doc:name="Variable"/>
+                    <set-variable variableName="emailMessage" value="" doc:name="emailMessage"/>
                     <foreach doc:name="For Each">
-                        <set-payload value="#[&quot;\n&quot;+payload.title+&quot; \nPrice: &quot;+payload.price+&quot; \nProcessor: &quot;+payload.processor+&quot; \nScreen Type: &quot;+payload.screentype+&quot;\nScreen Size: &quot;+payload.screensize+&quot;\nOther: &quot;+payload.other+&quot;\n\n&quot;+emailMessage]" encoding="UTF-8" doc:name="Set Payload"/>
+                        <set-payload value="#[emailMessage+&quot;\n&quot;+payload.title+&quot; \nPrice: &quot;+payload.price+&quot; \nProcessor: &quot;+payload.processor+&quot; \nScreen Type: &quot;+payload.screentype+&quot;\nScreen Size: &quot;+payload.screensize+&quot;\nOther: &quot;+payload.other+&quot;\n\n&quot;]" encoding="UTF-8" doc:name="Set Payload"/>
                         <set-variable variableName="emailMessage" value="#[payload]" doc:name="Variable"/>
                     </foreach>
                     <set-payload value="#[['to' : email , 'subject' : &quot;Your daily digest&quot; , 'content' : emailMessage]]" doc:name="Set Payload" encoding="UTF-8"/>
@@ -431,4 +431,5 @@ output.payload = String">
         <logger message="#[payload.size()]" level="INFO" doc:name="Logger"/>
         <twitter:update-status config-ref="Twitter__Configuration" status="#[&quot;Our system has been updated: \n&quot; + payload.get(0).FIELD+&quot;:&quot;+payload.get(0).NUMBEROF + &quot;\n&quot;+ payload.get(1).FIELD+&quot;:&quot;+payload.get(1).NUMBEROF + &quot;\n&quot;+ payload.get(2).FIELD+&quot;:&quot;+payload.get(2).NUMBEROF + &quot;\n&quot;+ payload.get(3).FIELD+&quot;:&quot;+payload.get(3).NUMBEROF + &quot;\n&quot;]" doc:name="Twitter"/>
     </flow>
+
 </mule>
