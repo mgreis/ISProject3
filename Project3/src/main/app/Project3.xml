@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns:schedulers="http://www.mulesoft.org/schema/mule/schedulers" xmlns:twitter="http://www.mulesoft.org/schema/mule/twitter" xmlns:smtp="http://www.mulesoft.org/schema/mule/smtp" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
+<mule xmlns:ssl="http://www.mulesoft.org/schema/mule/ssl"
+	xmlns:schedulers="http://www.mulesoft.org/schema/mule/schedulers"
+	xmlns:twitter="http://www.mulesoft.org/schema/mule/twitter" xmlns:smtp="http://www.mulesoft.org/schema/mule/smtp"
+	xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
 	xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns:validation="http://www.mulesoft.org/schema/mule/validation"
 	xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata"
 	xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:smtps="http://www.mulesoft.org/schema/mule/smtps"
@@ -22,7 +25,8 @@ http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mu
 http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
 http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
 http://www.mulesoft.org/schema/mule/twitter http://www.mulesoft.org/schema/mule/twitter/current/mule-twitter.xsd
-http://www.mulesoft.org/schema/mule/schedulers http://www.mulesoft.org/schema/mule/schedulers/current/mule-schedulers.xsd">
+http://www.mulesoft.org/schema/mule/schedulers http://www.mulesoft.org/schema/mule/schedulers/current/mule-schedulers.xsd
+http://www.mulesoft.org/schema/mule/ssl http://www.mulesoft.org/schema/mule/ssl/current/mule-ssl.xsd">
 	<http:listener-config name="HTTP_Listener_Configuration"
 		host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration">
 		<http:worker-threading-profile
@@ -32,19 +36,41 @@ http://www.mulesoft.org/schema/mule/schedulers http://www.mulesoft.org/schema/mu
 		packageNames="is.project3.smartphones.xml" doc:name="JAXB Context" />
 	<db:mysql-config name="MySQL_Configuration" host="localhost"
 		port="3306" user="root" database="isproject3" doc:name="MySQL Configuration" />
-	<smtps:connector name="SMTP_Connector" fromAddress="${smtp.user}@student.dei.uc.pt"
+	<smtps:connector name="SMTP_Connector"
 		validateConnections="true" doc:name="SMTP">
-		<smtps:tls-client path="C:\portable\keystore.jks" storePassword="123456" />
-		<smtps:tls-trust-store path="C:\portable\truststore.jks"
+		<smtps:tls-client path="keystore.jks" storePassword="123456" />
+		<smtps:tls-trust-store path="truststore.jks"
 			storePassword="123456" />
 	</smtps:connector>
-    <file:connector name="File" autoDelete="true" streaming="true" validateConnections="true" doc:name="File"/>
-    <smtp:gmail-connector name="Gmail" validateConnections="true" doc:name="Gmail" fromAddress="integracaosistemas15@gmail.com"/>
-    <twitter:config name="Twitter" consumerKey="1kgBDNqQnq3kEipcmNbQTYTet" consumerSecret="5az6IMW547bjeDXECnIGMUjIXrJKSeujN8jxCfQMnbc31MGnSS" doc:name="Twitter" accessKey="2882476084-MyopmqT7GuMMPrQ4YIhSvm1tZc15bDJ2zvvy5ut" accessSecret="Po6aY8wE5SUzld1o8KZEdnjBEUOEJWQuSQc3O0jDb5SFI
-    "/>
-    <twitter:config name="Twitter1" accessKey="2882476084-MyopmqT7GuMMPrQ4YIhSvm1tZc15bDJ2zvvy5ut" accessSecret="Po6aY8wE5SUzld1o8KZEdnjBEUOEJWQuSQc3O0jDb5SFI" consumerKey="hSLwYPhuO75hJxeC81vMlPaYd" consumerSecret="YzU0z1xhMg5aaHEn8YdkD5YnrAoN5AfBFO2uSlrpJcyeAq4qdF" doc:name="Twitter"/>
-    <twitter:config name="Twitter__Configuration" accessKey="2882476084-MyopmqT7GuMMPrQ4YIhSvm1tZc15bDJ2zvvy5ut" accessSecret="Po6aY8wE5SUzld1o8KZEdnjBEUOEJWQuSQc3O0jDb5SFI" consumerKey="hSLwYPhuO75hJxeC81vMlPaYd" consumerSecret="YzU0z1xhMg5aaHEn8YdkD5YnrAoN5AfBFO2uSlrpJcyeAq4qdF" doc:name="Twitter: Configuration"/>
-    <smtp:gmail-connector name="Gmail1" validateConnections="true" doc:name="Gmail"/>
+	<file:connector name="File" autoDelete="true" streaming="true"
+		validateConnections="true" doc:name="File" />
+	<smtp:gmail-connector name="Gmail"
+		validateConnections="true" doc:name="Gmail" fromAddress="integracaosistemas15@gmail.com" />
+	<twitter:config name="Twitter" consumerKey="1kgBDNqQnq3kEipcmNbQTYTet"
+		consumerSecret="5az6IMW547bjeDXECnIGMUjIXrJKSeujN8jxCfQMnbc31MGnSS"
+		doc:name="Twitter" accessKey="2882476084-MyopmqT7GuMMPrQ4YIhSvm1tZc15bDJ2zvvy5ut"
+		accessSecret="Po6aY8wE5SUzld1o8KZEdnjBEUOEJWQuSQc3O0jDb5SFI
+    " />
+	<twitter:config name="Twitter1"
+		accessKey="2882476084-MyopmqT7GuMMPrQ4YIhSvm1tZc15bDJ2zvvy5ut"
+		accessSecret="Po6aY8wE5SUzld1o8KZEdnjBEUOEJWQuSQc3O0jDb5SFI"
+		consumerKey="hSLwYPhuO75hJxeC81vMlPaYd" consumerSecret="YzU0z1xhMg5aaHEn8YdkD5YnrAoN5AfBFO2uSlrpJcyeAq4qdF"
+		doc:name="Twitter" />
+	<twitter:config name="Twitter__Configuration"
+		accessKey="2882476084-MyopmqT7GuMMPrQ4YIhSvm1tZc15bDJ2zvvy5ut"
+		accessSecret="Po6aY8wE5SUzld1o8KZEdnjBEUOEJWQuSQc3O0jDb5SFI"
+		consumerKey="hSLwYPhuO75hJxeC81vMlPaYd" consumerSecret="YzU0z1xhMg5aaHEn8YdkD5YnrAoN5AfBFO2uSlrpJcyeAq4qdF"
+		doc:name="Twitter: Configuration" />
+	<smtp:gmail-connector name="Gmail1"
+		validateConnections="true" doc:name="Gmail" />
+	<ssl:connector name="SSL__TLS_" validateConnections="true"
+		sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0"
+		clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0"
+		doc:name="SSL (TLS)">
+		<ssl:key-store path="keystore.jks" keyPassword="123456"
+			storePassword="123456" />
+		<ssl:server path="truststore.jks" storePassword="123456" />
+	</ssl:connector>
 	<flow name="HTTP-CreateDatabase" initialState="started">
 		<http:listener config-ref="HTTP_Listener_Configuration"
 			path="create_database" doc:name="GET create_database" allowedMethods="GET" />
@@ -308,8 +334,23 @@ output.payload = String">
 			value="Favorite Brand: #[payload.favoriteBrand]#[&quot;\n&quot;]Minimum Price: #[payload.minimumPrice]#[&quot;\n&quot;]Maximum Price: #[payload.maximumPrice]#[&quot;\n&quot;]Unsubscribe link: http://localhost:8081/unsubscribe?email=#[payload.email]&amp;uuid=#[payload.uuid]#[&quot;\n&quot; + (payload.active ? '' : &quot;Activate link: http://localhost:8081/activate_subscription?email=&quot; + payload.email + &quot;&amp;uuid=&quot; + payload.uuid + &quot;\n&quot;)]"
 			doc:name="Describe subscription" />
 	</sub-flow>
+	<sub-flow name="Send-Mail">
+		<choice
+			doc:name="(&quot;${smtp.provider}&quot;) &quot;dei&quot;? &quot;gmail&quot;?">
+			<when expression="#[&quot;${smtp.provider}&quot; == &quot;dei&quot;]">
+				<flow-ref name="Send-Mail-DEI" doc:name="Send-Mail-DEI" />
+			</when>
+			<when expression="#[&quot;${smtp.provider}&quot; == &quot;gmail&quot;]">
+				<flow-ref name="Send-Mail-GMAIL" doc:name="Send-Mail-GMAIL" />
+			</when>
+		</choice>
+		<db:update config-ref="MySQL_Configuration" doc:name="update # emails">
+			<db:parameterized-query><![CDATA[UPDATE `statistics` SET NUMBEROF = NUMBEROF+1 WHERE `FIELD` = 'EMAILS']]></db:parameterized-query>
+		</db:update>
+		<flow-ref name="twitter" doc:name="twitter" />
+	</sub-flow>
 
-	<sub-flow name="Send-Mail2"
+	<sub-flow name="Send-Mail-DEI"
 		doc:description="input.payload = Map (to,bc,bcc,replyto,subject,content)">
 		<set-variable variableName="mail" value="#[payload]"
 			doc:name="mail" />
@@ -319,63 +360,69 @@ output.payload = String">
 			subject="#[mail.subject]" responseTimeout="10000" doc:name="Send mail"
 			bcc="#[mail.bcc]" cc="#[mail.cc]" connector-ref="SMTP_Connector"
 			from="${smtp.from}" replyTo="#[mail.replyto]" />
-        <db:update config-ref="MySQL_Configuration" doc:name="update # emails">
-            <db:parameterized-query><![CDATA[UPDATE `statistics` SET NUMBEROF = NUMBEROF+1 WHERE `FIELD` = 'EMAIL']]></db:parameterized-query>
-        </db:update>
-        <flow-ref name="twitter" doc:name="twitter"/>
 	</sub-flow>
-    <sub-flow name="Send-Mail">
-        <set-variable variableName="mail" value="#[payload]" doc:name="Variable"/>
-        <set-payload value="#[mail.content]" doc:name="Set Payload" encoding="UTF-8"/>
-        <smtp:outbound-endpoint host="smtp.gmail.com" port="587" user="integracaosistemas15" password="sistemas15" connector-ref="Gmail" to="#[mail.to]" from="integracaosistemas15@gmail.com" subject="#[mail.subject]" cc="#[mail.cc]" bcc="#[mail.bcc]" replyTo="#[mail.replyto]" responseTimeout="10000" doc:name="SMTP"/>
-        <db:update config-ref="MySQL_Configuration" doc:name="Database">
-            <db:parameterized-query><![CDATA[UPDATE `statistics` SET NUMBEROF = NUMBEROF+1 WHERE `FIELD` = 'EMAILS']]></db:parameterized-query>
-        </db:update>
-        <flow-ref name="twitter" doc:name="twitter"/>
-    </sub-flow>
+	<sub-flow name="Send-Mail-GMAIL">
+		<set-variable variableName="mail" value="#[payload]"
+			doc:name="Variable" />
+		<set-payload value="#[mail.content]" doc:name="Set Payload"
+			encoding="UTF-8" />
+		<smtp:outbound-endpoint host="smtp.gmail.com"
+			port="587" user="integracaosistemas15" password="sistemas15"
+			connector-ref="Gmail" to="#[mail.to]" from="integracaosistemas15@gmail.com"
+			subject="#[mail.subject]" cc="#[mail.cc]" bcc="#[mail.bcc]" replyTo="#[mail.replyto]"
+			responseTimeout="10000" doc:name="SMTP" />
+	</sub-flow>
 	<flow name="Common-LoadSmartphones">
 		<component class="is.project3.smartphones.tools.Validator"
 			doc:name="Validator" />
-        <choice tracking:enable-default-events="true" doc:name="If it is not validated do nothing else put in database">
-            <when expression="#[payload==null]">
-                <set-payload value="Error!" doc:name="Set Payload"/>
-            </when>
-            <otherwise>
-                <mulexml:jaxb-xml-to-object-transformer encoding="UTF-8" jaxbContext-ref="JAXB_Context" doc:name="XML to JAXB Object"/>
-                <component class="is.project3.smartphones.tools.FilterScreenSize" doc:name="POJO-Filter"/>
-                <set-variable variableName="numberOfSmartphones" value="#[payload.getSmartphone().size()]" doc:name="NUMBER OF SMARTPHONES"/>
-                <set-session-variable variableName="timestamp" value="#[payload.getTimestamp().longValue()]" doc:name="Timestamp"/>
-                <set-session-variable variableName="version" value="#[payload.getVersion().longValue()]" doc:name="Version"/>
-                <set-session-variable variableName="crawler" value="#[payload.getCrawler()]" doc:name="Crawler"/>
-                <set-variable variableName="information" value="#[payload]" doc:name="Information"/>
-                <transactional action="ALWAYS_BEGIN" doc:name="Transactional">
-                    <db:delete config-ref="MySQL_Configuration" doc:name="DeleteFromDatabase">
-                        <db:parameterized-query><![CDATA[DELETE FROM SMARTPHONE;]]></db:parameterized-query>
-                    </db:delete>
-                    <set-payload value="#[information]" doc:name="Set Payload"/>
-                    <foreach collection="#[payload.getSmartphone()]" doc:name="For Each">
-                        <db:insert config-ref="MySQL_Configuration" doc:name="Insert into Database">
-                            <db:parameterized-query><![CDATA[INSERT INTO smartphone (VERSION, TIMESTAMP, CRAWLER, URL, TITLE, PRICE, PROCESSOR, SCREENTYPE, SCREENSIZE,OTHER) VALUES (#[sessionVars.version],#[sessionVars.timestamp],#[sessionVars.crawler], #[payload.url],#[payload.title],#[payload.price.value],#[payload.description.get(0).value],#[payload.description.get(1).value],#[payload.description.get(2).value],#[payload.description.get(3).value]);]]></db:parameterized-query>
-                        </db:insert>
-                    </foreach>
-                </transactional>
-                <db:update config-ref="MySQL_Configuration" doc:name="updateNumberOfSmartphones">
-                    <db:parameterized-query><![CDATA[UPDATE `statistics` SET NUMBEROF= #[numberOfSmartphones] WHERE `FIELD` = 'SMARTPHONES']]></db:parameterized-query>
-                </db:update>
-                <db:update config-ref="MySQL_Configuration" doc:name="updateUpdates">
-                    <db:parameterized-query><![CDATA[UPDATE `statistics` SET NUMBEROF = NUMBEROF+1 WHERE `FIELD` = 'UPDATES']]></db:parameterized-query>
-                </db:update>
-                <flow-ref name="twitter" doc:name="twitter"/>
-                <set-payload value="success!" doc:name="Set Payload"/>
-            </otherwise>
-        </choice>
+		<choice tracking:enable-default-events="true"
+			doc:name="If it is not validated do nothing else put in database">
+			<when expression="#[payload==null]">
+				<set-payload value="Error!" doc:name="Set Payload" />
+			</when>
+			<otherwise>
+				<mulexml:jaxb-xml-to-object-transformer
+					encoding="UTF-8" jaxbContext-ref="JAXB_Context" doc:name="XML to JAXB Object" />
+				<component class="is.project3.smartphones.tools.FilterScreenSize"
+					doc:name="POJO-Filter" />
+				<set-variable variableName="numberOfSmartphones"
+					value="#[payload.getSmartphone().size()]" doc:name="NUMBER OF SMARTPHONES" />
+				<set-session-variable variableName="timestamp"
+					value="#[payload.getTimestamp().longValue()]" doc:name="Timestamp" />
+				<set-session-variable variableName="version"
+					value="#[payload.getVersion().longValue()]" doc:name="Version" />
+				<set-session-variable variableName="crawler"
+					value="#[payload.getCrawler()]" doc:name="Crawler" />
+				<set-variable variableName="information" value="#[payload]"
+					doc:name="Information" />
+				<transactional action="ALWAYS_BEGIN" doc:name="Transactional">
+					<db:delete config-ref="MySQL_Configuration" doc:name="DeleteFromDatabase">
+						<db:parameterized-query><![CDATA[DELETE FROM SMARTPHONE;]]></db:parameterized-query>
+					</db:delete>
+					<set-payload value="#[information]" doc:name="Set Payload" />
+					<foreach collection="#[payload.getSmartphone()]" doc:name="For Each">
+						<db:insert config-ref="MySQL_Configuration" doc:name="Insert into Database">
+							<db:parameterized-query><![CDATA[INSERT INTO smartphone (VERSION, TIMESTAMP, CRAWLER, URL, TITLE, PRICE, PROCESSOR, SCREENTYPE, SCREENSIZE,OTHER) VALUES (#[sessionVars.version],#[sessionVars.timestamp],#[sessionVars.crawler], #[payload.url],#[payload.title],#[payload.price.value],#[payload.description.get(0).value],#[payload.description.get(1).value],#[payload.description.get(2).value],#[payload.description.get(3).value]);]]></db:parameterized-query>
+						</db:insert>
+					</foreach>
+				</transactional>
+				<db:update config-ref="MySQL_Configuration" doc:name="updateNumberOfSmartphones">
+					<db:parameterized-query><![CDATA[UPDATE `statistics` SET NUMBEROF= #[numberOfSmartphones] WHERE `FIELD` = 'SMARTPHONES']]></db:parameterized-query>
+				</db:update>
+				<db:update config-ref="MySQL_Configuration" doc:name="updateUpdates">
+					<db:parameterized-query><![CDATA[UPDATE `statistics` SET NUMBEROF = NUMBEROF+1 WHERE `FIELD` = 'UPDATES']]></db:parameterized-query>
+				</db:update>
+				<flow-ref name="twitter" doc:name="twitter" />
+				<set-payload value="success!" doc:name="Set Payload" />
+			</otherwise>
+		</choice>
 
 	</flow>
 	<flow name="Directory-LoadSmartphones">
 		<file:inbound-endpoint path="dropXMLdirectory"
 			responseTimeout="10000" doc:name="File" />
 		<file:file-to-string-transformer
-			doc:name="File to String" encoding="UTF-8"/>
+			doc:name="File to String" encoding="UTF-8" />
 		<flow-ref name="Common-LoadSmartphones" doc:name="Common-LoadSmartphones" />
 	</flow>
 	<flow name="SOAP-LoadSmartphones">
@@ -388,50 +435,67 @@ output.payload = String">
 		</component>
 		<flow-ref name="Common-LoadSmartphones" doc:name="Common-LoadSmartphones" />
 	</flow>
-    <flow name="SendDigest" initialState="started">
-        <poll doc:name="Poll">
-            <fixed-frequency-scheduler frequency="1" timeUnit="DAYS"/>
-            <db:select config-ref="MySQL_Configuration" doc:name="Select Subscriptions">
-                <db:parameterized-query><![CDATA[SELECT * FROM subscription]]></db:parameterized-query>
-            </db:select>
-        </poll>
-        <choice doc:name="No subscribers stop">
-            <when expression="#[payload.isEmpty]">
-                <logger message="Subscription table is Empty" level="INFO" doc:name="Logger"/>
-            </when>
-            <otherwise>
-                <foreach collection="#[payload]" doc:name="For Each">
-                    <logger message="#[payload]" level="INFO" doc:name="Logger"/>
-                    <set-variable variableName="email" value="#[payload.email]" doc:name="get Email"/>
-                    <set-variable variableName="brand" value="#[payload.favoriteBrand]" doc:name="get Brand"/>
-                    <logger message="SELECT * FROM SMARTPHONE where SMARTPHONE.TITLE LIKE '%#[payload.favoriteBrand]%' AND SMARTPHONE.PRICE &gt;= #[payload.minimumPrice]  AND SMARTPHONE.PRICE &lt;= #[payload.maximumPrice]" level="INFO" doc:name="Logger"/>
-                    <set-variable variableName="query" value="SELECT * FROM SMARTPHONE where SMARTPHONE.TITLE LIKE '%#[payload.favoriteBrand]%' AND SMARTPHONE.PRICE &gt;= #[payload.minimumPrice]  AND SMARTPHONE.PRICE &lt;= #[payload.maximumPrice]" doc:name="build Query"/>
-                    <db:select config-ref="MySQL_Configuration" doc:name="Select Smartphones that satisfy subscription">
-                        <db:dynamic-query><![CDATA[#[query]]]></db:dynamic-query>
+	<flow name="SendDigest" initialState="started">
+		<poll doc:name="Poll">
+			<fixed-frequency-scheduler frequency="1"
+				timeUnit="DAYS" />
+			<db:select config-ref="MySQL_Configuration" doc:name="Select Subscriptions">
+				<db:parameterized-query><![CDATA[SELECT * FROM subscription]]></db:parameterized-query>
+			</db:select>
+		</poll>
+		<choice doc:name="No subscribers stop">
+			<when expression="#[payload.isEmpty]">
+				<logger message="Subscription table is Empty" level="INFO"
+					doc:name="Logger" />
+			</when>
+			<otherwise>
+				<foreach collection="#[payload]" doc:name="For Each">
+					<logger message="#[payload]" level="INFO" doc:name="Logger" />
+					<set-variable variableName="email" value="#[payload.email]"
+						doc:name="get Email" />
+					<set-variable variableName="brand" value="#[payload.favoriteBrand]"
+						doc:name="get Brand" />
+					<logger
+						message="SELECT * FROM SMARTPHONE where SMARTPHONE.TITLE LIKE '%#[payload.favoriteBrand]%' AND SMARTPHONE.PRICE &gt;= #[payload.minimumPrice]  AND SMARTPHONE.PRICE &lt;= #[payload.maximumPrice]"
+						level="INFO" doc:name="Logger" />
+					<set-variable variableName="query"
+						value="SELECT * FROM SMARTPHONE where SMARTPHONE.TITLE LIKE '%#[payload.favoriteBrand]%' AND SMARTPHONE.PRICE &gt;= #[payload.minimumPrice]  AND SMARTPHONE.PRICE &lt;= #[payload.maximumPrice]"
+						doc:name="build Query" />
+					<db:select config-ref="MySQL_Configuration"
+						doc:name="Select Smartphones that satisfy subscription">
+						<db:dynamic-query><![CDATA[#[query]]]></db:dynamic-query>
 
-                    </db:select>
-                    <logger message="#[payload.size()]" level="INFO" doc:name="Logger"/>
-                    <set-variable variableName="emailMessage" value="" doc:name="emailMessage"/>
-                    <foreach doc:name="For Each">
-                        <set-payload value="#[emailMessage+&quot;\n&quot;+payload.title+&quot; \nPrice: &quot;+payload.price+&quot; \nProcessor: &quot;+payload.processor+&quot; \nScreen Type: &quot;+payload.screentype+&quot;\nScreen Size: &quot;+payload.screensize+&quot;\nOther: &quot;+payload.other+&quot;\n\n&quot;]" encoding="UTF-8" doc:name="Set Payload"/>
-                        <set-variable variableName="emailMessage" value="#[payload]" doc:name="Variable"/>
-                    </foreach>
-                    <set-payload value="#[['to' : email , 'subject' : &quot;Your daily digest for &quot;+brand , 'content' : emailMessage]]" doc:name="Set Payload" encoding="UTF-8"/>
-                    <flow-ref name="Send-Mail" doc:name="Send-Mail"/>
+					</db:select>
+					<logger message="#[payload.size()]" level="INFO" doc:name="Logger" />
+					<set-variable variableName="emailMessage" value=""
+						doc:name="emailMessage" />
+					<foreach doc:name="For Each">
+						<set-payload
+							value="#[emailMessage+&quot;\n&quot;+payload.title+&quot; \nPrice: &quot;+payload.price+&quot; \nProcessor: &quot;+payload.processor+&quot; \nScreen Type: &quot;+payload.screentype+&quot;\nScreen Size: &quot;+payload.screensize+&quot;\nOther: &quot;+payload.other+&quot;\n\n&quot;]"
+							encoding="UTF-8" doc:name="Set Payload" />
+						<set-variable variableName="emailMessage" value="#[payload]"
+							doc:name="Variable" />
+					</foreach>
+					<set-payload
+						value="#[['to' : email , 'subject' : &quot;Your daily digest for &quot;+brand , 'content' : emailMessage]]"
+						doc:name="Set Payload" encoding="UTF-8" />
+					<flow-ref name="Send-Mail" doc:name="Send-Mail" />
 
-                </foreach>
-            </otherwise>
-        </choice>
-    </flow>
-    <flow name="twitter">
-        <db:update config-ref="MySQL_Configuration" doc:name="Update # Twitts">
-            <db:parameterized-query><![CDATA[UPDATE statistics SET NUMBEROF = NUMBEROF+1 WHERE `FIELD` = 'TWITTS']]></db:parameterized-query>
-        </db:update>
-        <db:select config-ref="MySQL_Configuration" doc:name="Select Statistics">
-            <db:parameterized-query><![CDATA[SELECT * FROM STATISTICS]]></db:parameterized-query>
-        </db:select>
-        <logger message="#[payload.size()]" level="INFO" doc:name="Logger"/>
-        <twitter:update-status config-ref="Twitter__Configuration" status="#[&quot;Our system has been updated: \n&quot; + payload.get(0).FIELD+&quot;:&quot;+payload.get(0).NUMBEROF + &quot;\n&quot;+ payload.get(1).FIELD+&quot;:&quot;+payload.get(1).NUMBEROF + &quot;\n&quot;+ payload.get(2).FIELD+&quot;:&quot;+payload.get(2).NUMBEROF + &quot;\n&quot;+ payload.get(3).FIELD+&quot;:&quot;+payload.get(3).NUMBEROF + &quot;\n&quot;]" doc:name="Twitter"/>
-    </flow>
+				</foreach>
+			</otherwise>
+		</choice>
+	</flow>
+	<flow name="twitter">
+		<db:update config-ref="MySQL_Configuration" doc:name="Update # Twitts">
+			<db:parameterized-query><![CDATA[UPDATE statistics SET NUMBEROF = NUMBEROF+1 WHERE `FIELD` = 'TWITTS']]></db:parameterized-query>
+		</db:update>
+		<db:select config-ref="MySQL_Configuration" doc:name="Select Statistics">
+			<db:parameterized-query><![CDATA[SELECT * FROM STATISTICS]]></db:parameterized-query>
+		</db:select>
+		<logger message="#[payload.size()]" level="INFO" doc:name="Logger" />
+		<twitter:update-status config-ref="Twitter__Configuration"
+			status="#[&quot;Our system has been updated: \n&quot; + payload.get(0).FIELD+&quot;:&quot;+payload.get(0).NUMBEROF + &quot;\n&quot;+ payload.get(1).FIELD+&quot;:&quot;+payload.get(1).NUMBEROF + &quot;\n&quot;+ payload.get(2).FIELD+&quot;:&quot;+payload.get(2).NUMBEROF + &quot;\n&quot;+ payload.get(3).FIELD+&quot;:&quot;+payload.get(3).NUMBEROF + &quot;\n&quot;]"
+			doc:name="Twitter" />
+	</flow>
 
 </mule>

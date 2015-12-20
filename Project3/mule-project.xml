@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mule-project xmlns="http://www.mulesoft.com/tooling/project" runtimeId="org.mule.tooling.server.3.7.2.ee" schemaVersion="3.5.0.0">
     <name>Project3</name>
-    <description></description>
+    <description>Enviromental variables:&#xD;
+smtp.user : login do DEI&#xD;
+smtp.password : password do DEI&#xD;
+smtp.from : email do DEI&#xD;
+smtp.provider : dei ou gmail</description>
     <muleExtension name="Twitter" qualifier="org.mule.tooling.ui.contribution.twitter.3.6.0"/>
 </mule-project>
