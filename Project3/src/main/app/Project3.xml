@@ -440,7 +440,8 @@ output.payload = String">
 			<fixed-frequency-scheduler frequency="1"
 				timeUnit="DAYS" />
 			<db:select config-ref="MySQL_Configuration" doc:name="Select Subscriptions">
-				<db:parameterized-query><![CDATA[SELECT * FROM subscription]]></db:parameterized-query>
+                <db:parameterized-query><![CDATA[SELECT * FROM subscription where active = 1]]></db:parameterized-query>
+
 			</db:select>
 		</poll>
 		<choice doc:name="No subscribers stop">
