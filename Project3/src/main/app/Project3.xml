@@ -458,12 +458,12 @@ output.payload = String">
 					<logger
 						message="SELECT * FROM SMARTPHONE where SMARTPHONE.TITLE LIKE '%#[payload.favoriteBrand]%' AND SMARTPHONE.PRICE &gt;= #[payload.minimumPrice]  AND SMARTPHONE.PRICE &lt;= #[payload.maximumPrice]"
 						level="INFO" doc:name="Logger" />
-					<set-variable variableName="query"
-						value="SELECT * FROM SMARTPHONE where SMARTPHONE.TITLE LIKE '%#[payload.favoriteBrand]%' AND SMARTPHONE.PRICE &gt;= #[payload.minimumPrice]  AND SMARTPHONE.PRICE &lt;= #[payload.maximumPrice]"
-						doc:name="build Query" />
+                    <set-variable variableName="query" value="SELECT * FROM SMARTPHONE where SMARTPHONE.TITLE LIKE '%#[payload.favoriteBrand]%' AND SMARTPHONE.PRICE &gt;= #[payload.minimumPrice]  AND SMARTPHONE.PRICE &lt;= #[payload.maximumPrice]" doc:name="build Query"/>
+
 					<db:select config-ref="MySQL_Configuration"
 						doc:name="Select Smartphones that satisfy subscription">
-						<db:dynamic-query><![CDATA[#[query]]]></db:dynamic-query>
+                        <db:dynamic-query><![CDATA[#[query]]]></db:dynamic-query>
+
 
 					</db:select>
 					<logger message="#[payload.size()]" level="INFO" doc:name="Logger" />
@@ -497,5 +497,16 @@ output.payload = String">
 			status="#[&quot;Our system has been updated: \n&quot; + payload.get(0).FIELD+&quot;:&quot;+payload.get(0).NUMBEROF + &quot;\n&quot;+ payload.get(1).FIELD+&quot;:&quot;+payload.get(1).NUMBEROF + &quot;\n&quot;+ payload.get(2).FIELD+&quot;:&quot;+payload.get(2).NUMBEROF + &quot;\n&quot;+ payload.get(3).FIELD+&quot;:&quot;+payload.get(3).NUMBEROF + &quot;\n&quot;]"
 			doc:name="Twitter" />
 	</flow>
+    <flow name="SOAP-Statistics" initialState="started">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="/statistics" doc:name="HTTP"/>
+        <cxf:jaxws-service serviceClass="is.project3.statistics.soap.LoadStatistics" doc:name="CXF"/>
+        <component doc:name="Java">
+            <singleton-object class="is.project3.statistics.soap.LoadStatistics"/>
+        </component>
+        <db:select config-ref="MySQL_Configuration" doc:name="Select Statistics">
+            <db:parameterized-query><![CDATA[SELECT * FROM STATISTICS]]></db:parameterized-query>
+        </db:select>
+        <set-payload value="#[&quot;System Statistics: \n&quot; + payload.get(0).FIELD+&quot;:&quot;+payload.get(0).NUMBEROF + &quot;\n&quot;+ payload.get(1).FIELD+&quot;:&quot;+payload.get(1).NUMBEROF + &quot;\n&quot;+ payload.get(2).FIELD+&quot;:&quot;+payload.get(2).NUMBEROF + &quot;\n&quot;+ payload.get(3).FIELD+&quot;:&quot;+payload.get(3).NUMBEROF + &quot;\n&quot;]" doc:name="Set Payload"/>
+    </flow>
 
 </mule>
