@@ -1,0 +1,21 @@
+Email: #[describe.data.email]
+Favorite Brand: #[describe.data.favoriteBrand]
+Minimum Price: #[describe.data.minimumPrice]
+Maximum Price: #[describe.data.maximumPrice]
+Requested: #[describe.data.created]
+Request Channel: #[describe.data.channel]
+Client Name: #[describe.data.clientName]
+#[
+	describe.activate_subscription == true
+	? "Activate Link: http://localhost:8081/activate_subscription?id=" + describe.data.id + "&email=" + describe.data.email + "&signature=" + payload + "\n" +
+		"The subscription will be forgotten after one hour if it is not activated.\n"
+	: ""
+]#[
+	describe.unsubscribe == true
+	? "Unsubscribe Link: http://localhost:8081/unsubscribe?id=" + describe.data.id + "&email=" + describe.data.email + "\n"
+	: ""
+]#[
+	describe.confirm_unsubscribe == true
+	? "Confirm Unsubscribe Link: http://localhost:8081/confirm_unsubscribe?id=" + describe.data.id + "&email=" + describe.data.email + "&signature=" + payload + "\n"
+	: ""
+]

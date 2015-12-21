@@ -54,10 +54,6 @@ public class Subscription implements Serializable {
 	private double maximumPrice;
 
 	@Basic
-	@Column(name = "uuid", columnDefinition = "varchar(255) CHARACTER SET latin1 NOT NULL", unique = true)
-	private String uuid;
-
-	@Basic
 	@Column(name = "active", columnDefinition = "tinyint(1) NOT NULL DEFAULT 0")
 	private boolean active;
 
@@ -81,12 +77,10 @@ public class Subscription implements Serializable {
 		s.append(getMinimumPrice());
 		s.append(",maximumPrice=");
 		s.append(getMaximumPrice());
-		s.append(",created=");
-		s.append(getCreated());
-		s.append(",uuid=");
-		s.append(getUuid());
 		s.append(",active=");
 		s.append(isActive());
+		s.append(",created=");
+		s.append(getCreated());
 		s.append("}");
 		return s.toString();
 	}
@@ -145,14 +139,6 @@ public class Subscription implements Serializable {
 
 	public void setMaximumPrice(double maximumPrice) {
 		this.maximumPrice = maximumPrice;
-	}
-
-	public String getUuid() {
-		return uuid;
-	}
-
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
 	}
 
 	public boolean isActive() {

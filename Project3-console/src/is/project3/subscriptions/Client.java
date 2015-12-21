@@ -1,8 +1,9 @@
 package is.project3.subscriptions;
 
-import is.project3.subscriptions.wsimport.*;
+import is.project3.subscriptions.wsimport.SubscriptionService;
+import is.project3.subscriptions.wsimport.SubscriptionServiceService;
 
-import java.security.InvalidParameterException;
+import java.math.BigInteger;
 import java.util.Scanner;
 
 /**
@@ -85,30 +86,21 @@ public class Client implements Runnable {
 		System.out.print("Maximum Price : ");
 		final double maximumPrice = Double.parseDouble(input.nextLine());
 		if (minimumPrice < 0.0 || maximumPrice < minimumPrice) {
-			throw new InvalidParameterException("Invalid price range");
+			throw new IllegalArgumentException("The minimum price must be equal or lower than the maximum price.");
 		}
 		// subscribe
-		if (server.subscribe(email, CLIENT_NAME, favoriteBrand, minimumPrice,
-				maximumPrice)) {
-			System.out
-					.println("SUCCESS: A mail was sent with an activation link to start receiving smartphone updates.");
-		} else {
-			System.out.println("ERROR: Failed to subscribe.");
-		}
+		System.out.println(server.subscribe(email, CLIENT_NAME, favoriteBrand,
+				minimumPrice, maximumPrice));
 	}
 
 	private void unsubscribe() {
 		// input
+		System.out.print("Id : ");
+		final BigInteger id = new BigInteger(input.nextLine().trim());
 		System.out.print("Email : ");
 		final String email = input.nextLine().trim();
-		System.out.print("UUID : ");
-		final String uuid = input.nextLine().trim();
 		// unsubscribe
-		if (server.unsubscribe(email, uuid)) {
-			System.out.println("SUCESS: The subscription was deleted.");
-		} else {
-			System.out.println("ERROR: Failed to unsubscribe.");
-		}
+		System.out.println(server.unsubscribe(id, email));
 	}
 
 	private void emailSubscriptions() {
@@ -116,8 +108,7 @@ public class Client implements Runnable {
 		System.out.print("Email : ");
 		final String email = input.nextLine().trim();
 		// email subscriptions
-		server.emailSubscriptions(email);
-		System.out.println("SUCCESS: A mail was sent only if the email had subscriptions. No futher feedback is given here to protect the subscriber's privacy.");
+		System.out.println(server.emailSubscriptions(email));
 	}
 
 }

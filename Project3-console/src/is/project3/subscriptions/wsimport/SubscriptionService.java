@@ -1,6 +1,7 @@
 
 package is.project3.subscriptions.wsimport;
 
+import java.math.BigInteger;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -31,13 +32,13 @@ public interface SubscriptionService {
      * @param minimumPrice
      * @param email
      * @return
-     *     returns boolean
+     *     returns java.lang.String
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "subscribe", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.Subscribe")
     @ResponseWrapper(localName = "subscribeResponse", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.SubscribeResponse")
-    public boolean subscribe(
+    public String subscribe(
         @WebParam(name = "email", targetNamespace = "")
         String email,
         @WebParam(name = "clientName", targetNamespace = "")
@@ -51,29 +52,32 @@ public interface SubscriptionService {
 
     /**
      * 
-     * @param uuid
+     * @param id
      * @param email
      * @return
-     *     returns boolean
+     *     returns java.lang.String
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "unsubscribe", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.Unsubscribe")
     @ResponseWrapper(localName = "unsubscribeResponse", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.UnsubscribeResponse")
-    public boolean unsubscribe(
+    public String unsubscribe(
+        @WebParam(name = "id", targetNamespace = "")
+        BigInteger id,
         @WebParam(name = "email", targetNamespace = "")
-        String email,
-        @WebParam(name = "uuid", targetNamespace = "")
-        String uuid);
+        String email);
 
     /**
      * 
      * @param email
+     * @return
+     *     returns java.lang.String
      */
     @WebMethod
+    @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "emailSubscriptions", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.EmailSubscriptions")
     @ResponseWrapper(localName = "emailSubscriptionsResponse", targetNamespace = "http://subscriptions.project3.is/", className = "is.project3.subscriptions.wsimport.EmailSubscriptionsResponse")
-    public void emailSubscriptions(
+    public String emailSubscriptions(
         @WebParam(name = "email", targetNamespace = "")
         String email);
 

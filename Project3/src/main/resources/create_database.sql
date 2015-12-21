@@ -23,11 +23,10 @@ CREATE TABLE IF NOT EXISTS `subscription` (
 	`favoriteBrand` varchar(255) NOT NULL,
 	`minimumPrice` double NOT NULL,
 	`maximumPrice` double NOT NULL,
-	`created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`uuid` varchar(255) CHARACTER SET latin1 NOT NULL,
 	`active` tinyint(1) NOT NULL DEFAULT 0,
+	`created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (`id`),
-	UNIQUE KEY `u_uuid` (`uuid`)
+	UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB ;
 
 CREATE TABLE IF NOT EXISTS `Statistics` (

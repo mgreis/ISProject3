@@ -1,5 +1,7 @@
 package is.project3.subscriptions;
 
+import java.math.BigInteger;
+
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlElement;
@@ -8,21 +10,21 @@ import javax.xml.bind.annotation.XmlElement;
 public interface SubscriptionService {
 
 	/**
-	 * Create or replace a smartphone subscription.
+	 * Create a subscription.
 	 * 
 	 * @param email
 	 *            Email of the subscription.
 	 * @param clientName
 	 *            Client name.
 	 * @param favoriteBrand
-	 *            Favorite smartphone brand.
+	 *            Favorite brand.
 	 * @param minimumPrice
 	 *            Minimum price.
 	 * @param maximumPrice
 	 *            Maximum price.
-	 * @return true if a subscription was created.
+	 * @return the result of the operation.
 	 */
-	public boolean subscribe(
+	public String subscribe(
 			@WebParam(name = "email") @XmlElement(required = true) String email,
 			@WebParam(name = "clientName") @XmlElement(required = true) String clientName,
 			@WebParam(name = "favoriteBrand") @XmlElement(required = true) String favoriteBrand,
@@ -32,21 +34,26 @@ public interface SubscriptionService {
 	/**
 	 * Delete a subscription.
 	 * 
-	 * @param uuid
-	 *            Unique subscription identifier.
-	 * @return true if the subscription was delete.
+	 * @param id
+	 *            Subscription id.
+	 * @param email
+	 *            Subscription email.
+	 * @param signature
+	 *            Subscription signature.
+	 * @return the result of the operation.
 	 */
-	public boolean unsubscribe(
-			@WebParam(name = "email") @XmlElement(required = true) String email,
-			@WebParam(name = "uuid") @XmlElement(required = true) String uuid);
+	public String unsubscribe(
+			@WebParam(name = "id") @XmlElement(required = true) BigInteger id,
+			@WebParam(name = "email") @XmlElement(required = true) String email);
 
 	/**
-	 * Send email with subscriptions.
+	 * Send email with all the subscriptions.
 	 * 
 	 * @param email
 	 *            Email address.
+	 * @return the result of the operation.
 	 */
-	public void emailSubscriptions(
+	public String emailSubscriptions(
 			@WebParam(name = "email") @XmlElement(required = true) String email);
 
 }
