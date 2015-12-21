@@ -536,6 +536,7 @@ output.payload = String">
 			connector-ref="Gmail" to="#[mail.to]" from="integracaosistemas15@gmail.com"
 			subject="#[mail.subject]" cc="#[mail.cc]" bcc="#[mail.bcc]" replyTo="#[mail.replyto]"
 			responseTimeout="10000" doc:name="SMTP" />
+        <logger message="Send-Mail-GMAIL: #[mail.to]" level="INFO" doc:name="Logger"/>
 	</sub-flow>
 	<flow name="Common-LoadSmartphones">
 		<component class="is.project3.smartphones.tools.Validator"
@@ -579,6 +580,7 @@ output.payload = String">
 				</db:update>
 				<flow-ref name="twitter" doc:name="twitter" />
 				<set-payload value="success!" doc:name="Set Payload" />
+                <logger message="LoadSmartphones: #[payload]" level="INFO" doc:name="Logger"/>
 			</otherwise>
 		</choice>
 
@@ -611,19 +613,17 @@ output.payload = String">
 		</poll>
 		<choice doc:name="No subscribers stop">
 			<when expression="#[payload.isEmpty]">
-				<logger message="Subscription table is Empty" level="INFO"
+				<logger message="SendDigest: Subscription table is Empty" level="INFO"
 					doc:name="Logger" />
 			</when>
 			<otherwise>
 				<foreach collection="#[payload]" doc:name="For Each">
-					<logger message="#[payload]" level="INFO" doc:name="Logger" />
+
 					<set-variable variableName="email" value="#[payload.email]"
 						doc:name="get Email" />
 					<set-variable variableName="brand" value="#[payload.favoriteBrand]"
 						doc:name="get Brand" />
-					<logger
-						message="SELECT * FROM SMARTPHONE where SMARTPHONE.TITLE LIKE '%#[payload.favoriteBrand]%' AND SMARTPHONE.PRICE &gt;= #[payload.minimumPrice]  AND SMARTPHONE.PRICE &lt;= #[payload.maximumPrice]"
-						level="INFO" doc:name="Logger" />
+
                     <set-variable variableName="query" value="SELECT * FROM SMARTPHONE where SMARTPHONE.TITLE LIKE '%#[payload.favoriteBrand]%' AND SMARTPHONE.PRICE &gt;= #[payload.minimumPrice]  AND SMARTPHONE.PRICE &lt;= #[payload.maximumPrice]" doc:name="build Query"/>
 
 					<db:select config-ref="MySQL_Configuration"
@@ -632,7 +632,7 @@ output.payload = String">
 
 
 					</db:select>
-					<logger message="#[payload.size()]" level="INFO" doc:name="Logger" />
+
 					<set-variable variableName="emailMessage" value=""
 						doc:name="emailMessage" />
 					<foreach doc:name="For Each">
@@ -662,6 +662,7 @@ output.payload = String">
 		<twitter:update-status config-ref="Twitter__Configuration"
 			status="#[&quot;Our system has been updated: \n&quot; + payload.get(0).FIELD+&quot;:&quot;+payload.get(0).NUMBEROF + &quot;\n&quot;+ payload.get(1).FIELD+&quot;:&quot;+payload.get(1).NUMBEROF + &quot;\n&quot;+ payload.get(2).FIELD+&quot;:&quot;+payload.get(2).NUMBEROF + &quot;\n&quot;+ payload.get(3).FIELD+&quot;:&quot;+payload.get(3).NUMBEROF + &quot;\n&quot;]"
 			doc:name="Twitter" />
+        <logger message="Send Twitter: success" level="INFO" doc:name="Logger"/>
 	</flow>
     <flow name="SOAP-Statistics" initialState="started">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/statistics" doc:name="HTTP"/>
@@ -673,6 +674,7 @@ output.payload = String">
             <db:parameterized-query><![CDATA[SELECT * FROM STATISTICS]]></db:parameterized-query>
         </db:select>
         <set-payload value="#[&quot;System Statistics: \n&quot; + payload.get(0).FIELD+&quot;:&quot;+payload.get(0).NUMBEROF + &quot;\n&quot;+ payload.get(1).FIELD+&quot;:&quot;+payload.get(1).NUMBEROF + &quot;\n&quot;+ payload.get(2).FIELD+&quot;:&quot;+payload.get(2).NUMBEROF + &quot;\n&quot;+ payload.get(3).FIELD+&quot;:&quot;+payload.get(3).NUMBEROF + &quot;\n&quot;]" doc:name="Set Payload"/>
+        <logger message="Statistics: success" level="INFO" doc:name="Logger"/>
     </flow>
 
 </mule>
