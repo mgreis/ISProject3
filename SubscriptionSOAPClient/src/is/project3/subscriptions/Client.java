@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 /**
  * Client de consola para gerir subscrições.
- * {@code wsimport -Xnocompile -d Project3-console\src -p is.project3.subscriptions.wsimport http://localhost:8081/subscription_service?wsdl}
+ * {@code wsimport -Xnocompile -d SubscriptionSOAPClient\src -p is.project3.subscriptions.wsimport http://localhost:8081/subscription_service?wsdl}
  * 
  * @author Flávio J. Saraiva
  */
