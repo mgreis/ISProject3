@@ -546,6 +546,8 @@ output.payload = String">
 			doc:name="If it is not validated do nothing else put in database">
 			<when expression="#[payload==null]">
 				<set-payload value="Error!" doc:name="Set Payload" />
+				<logger message="LoadSmartphones: Error" level="INFO"
+					doc:name="Logger" />
 			</when>
 			<otherwise>
 				<mulexml:jaxb-xml-to-object-transformer
@@ -580,7 +582,7 @@ output.payload = String">
 					<db:parameterized-query><![CDATA[UPDATE `statistics` SET NUMBEROF = NUMBEROF+1 WHERE `FIELD` = 'UPDATES']]></db:parameterized-query>
 				</db:update>
 				<flow-ref name="twitter" doc:name="twitter" />
-				<set-payload value="success!" doc:name="Set Payload" />
+				<set-payload value="Success" doc:name="Set Payload" />
 				<logger message="LoadSmartphones: #[payload]" level="INFO"
 					doc:name="Logger" />
 			</otherwise>
